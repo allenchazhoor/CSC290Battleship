@@ -1,4 +1,4 @@
-## CSC290: Group Project
+## Project Plan
 
 ##### Members:
 
@@ -9,6 +9,21 @@
 - Thomas
 
 ##### Game: Battleship
+
+#### Project Scope
+
+---
+
+#### Deliverables
+
+---
+
+#### Deadlines
+
+---
+
+- Sunday October 13 @ 9pm: Project plan
+- Week 6 and 7 tutorials: 
 
 #### Classes
 
