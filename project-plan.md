@@ -14,7 +14,15 @@
 
 ---
 
-#### Deliverables
+#### Work Breakdown Structure
+
+---
+
+#### Format
+
+---
+
+#### Deliverables & Milestones
 
 ---
 
@@ -23,7 +31,11 @@
 ---
 
 - Sunday October 13 @ 9pm: Project plan
-- Week 6 and 7 tutorials: 
+- Week 6 & 7 tutorials: Design Review Presentation
+- October 27 @ 9pm: Individual Code Commit
+- November 10 @ 9pm: Individual documentation
+- TBD: Project repository
+- Week 10 & 11: Final Presentation
 
 #### Classes
 
