@@ -8,11 +8,25 @@
 - Chris
 - Thomas
 
-##### Game: Battleship
+**Game**: Battleship
+
+**Project Title**: ? (is "battleship" trademarked?)
 
 #### Project Scope
 
 ---
+
+##### must have
+
+- 
+
+##### good to have
+
+- 
+
+##### out of scope
+
+- 
 
 #### Work Breakdown Structure
 
@@ -25,6 +39,11 @@
 #### Deliverables & Milestones
 
 ---
+
+1. ?
+2. ?
+3. [...]
+4. Project Complete
 
 #### Deadlines
 
@@ -50,3 +69,17 @@
   - sunk: boolean
   - is_hit: boolean
 - Map
+
+#### Addendum
+
+---
+
+##### George
+
+##### Allen
+
+##### Bradley
+
+##### Chris
+
+##### Thomas
