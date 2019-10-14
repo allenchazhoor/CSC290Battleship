@@ -163,7 +163,7 @@ Presentation: Powerpoint
 
 ##### George
 
-##### Allen: Came up with title of game, contributed to Tools and Software, Milestones, Deadlines. Offered to code AI aspect of game
+##### Allen: Came up with title of game, contributed to Tools and Software, Milestones, Deadlines. Will code AI aspect of game
 
 ##### Bradley
 
