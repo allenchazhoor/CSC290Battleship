@@ -15,9 +15,6 @@
 **Project Title**: <span style="background:black;color:white;padding:3px;border-radius:3px;">**DreadNought**:tm:</span>
 
 **MarkUs Submitter**: George
-
- what the goals and motivations are of your project, and what success looks like how work will be divided, and how to ensure that the division is fair how team members will work together, including tools that you will use and meetings that you will hold how your team members can contribute ideas and work who will be responsible for submitting the deliverables on Markus who will be responsible for checking if team members need help what the protocols are if a team member is having difficulties what your deliverables will be, including "internal" deliverables that are *not* graded what your milestones will be, and when you expect to hit those milestones what your risks are and how to mitigate them (e.g. if a group member drops the course, if a group member does not show up to a presentation) 
-
 ---
 ##### Overall scope: have a functional game of battleship, be able to play against another human or the computer.
 
