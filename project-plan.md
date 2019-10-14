@@ -45,6 +45,7 @@ Develop communication skills in a group environment. Good preparation for group 
 - Save and load game states
 - Customizable board size & number of ships
 - Different strategies for computer player, so that it doesn’t play randomly.
+- sounds and special effects 
 
 ##### Out of scope
 
@@ -168,5 +169,6 @@ Presentation: Powerpoint
 ##### Bradley
 
 ##### Chris
+For the creation of the project plan my contributions were discussing with the group about the scope of the projects. These topics ranged from the must-haves, good to have, and the out of scope ideas for the game we have selected. In addition, I also contributed towards this group work by discussing some of the class’s objects, methods, and other variance attributes that the game should have in order for it to work. Additionally, I also helped my group with organizing specific deadlines and milestones that should be set, such as when should the game be completed, by what time should the must haves for the game be completed, etc.   
 
 ##### Thomas
