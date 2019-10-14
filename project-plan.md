@@ -100,6 +100,8 @@ Communication software: Discord:tm:
 
 Documenting: Markdown
 
+Presentation: Powerpoint
+
 #### Deliverables & Milestones
 
 ---
