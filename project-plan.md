@@ -29,6 +29,8 @@ Develop communication skills in a group environment. Good preparation for group 
 
 - first full game: end of the project
 - First class
+- Working PvP
+- Working PvAI
 - Final project
 - 
 
