@@ -25,15 +25,6 @@
 
 Develop communication skills in a group environment. Good preparation for group projects in the industry. Get a high grade in the course. Build a game/app from scratch, the end product could be very rewarding. Put it on resume.
 
-##### Milestones
-
-- first full game: end of the project
-- First class
-- Working PvP
-- Working PvAI
-- Final project
-- 
-
 ##### Risks and how to solve them
 - Drop course: tell instructors, then divide the work of the person equally among the remaining people in the group.
 - Person not responding: reach out to the person first (in lecture/tutorial/at school). If still doesn’t answer: tell instructor.
@@ -172,7 +163,7 @@ Presentation: Powerpoint
 
 ##### George
 
-##### Allen
+##### Allen: Came up with title of game, contributed to Tools and Software, Milestones, Deadlines. Offered to code AI aspect of game
 
 ##### Bradley
 
