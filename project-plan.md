@@ -190,6 +190,8 @@ Presentation: Google Slides (exported as a ppt)
     - sunk(): boolean
     - is_hit(): boolean
 
+  <div style="page-break-after: always;"></div>  
+
 #### Addendum
 
 ---
