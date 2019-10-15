@@ -192,7 +192,15 @@ Presentation: Google Slides (exported as a ppt)
 
 ##### George
 
-- Typing
+I hosted video calls and typed up what people were saying (this document). I was involved in the brainstorming and discussion and directly committed to the git respository. I took part in writing:
+
+- The class structure
+- The general stuff at the top
+- Tools & software
+- must and good to haves
+- etc
+
+I will be responsible for submitting on MarkUs and I am part of the GUI team, although we can fluctuate between areas of focus to help. I also took part in determining our groups internal and external deadlines for deliverables and our milestones.
 
 ##### Allen
 My first contribution was the idea for the game's title. I was involved in all our group's brainstorming and discussion sessions and setup the git repository that we have been using and will continue to use for our project. I contributed to and helped write most of the subsections of the project plan such as the Tools and Software, Milestones, and Deadlines. I assisted in conceptualizing the code design and division (classes and attributes) and proposed some of the key deadlines. I will code AI aspect of the game.
