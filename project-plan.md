@@ -19,6 +19,10 @@
 **Meetings**: Friday afternoons in person or on Discord:tm:
 
 ---
+
+![](D:\Projects\CSC290Battleship\WBS.svg)
+
+---
 ##### Overall scope: have a functional game of battleship, be able to play against another human or the computer.
 
 ##### Goals/Motivations
