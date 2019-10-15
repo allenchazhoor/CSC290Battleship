@@ -195,7 +195,7 @@ Presentation: Google Slides (exported as a ppt)
 - Typing
 
 ##### Allen
-My first contribution was the idea for the game's title. I was involved in all our group's brainstorming and discussion sessions and setup the git repository that we have been using and will continue to use for our project. I contributed to and helped write the Tools and Software, Milestones, and Deadlines subsections of the project plan. I will code AI aspect of the game.
+My first contribution was the idea for the game's title. I was involved in all our group's brainstorming and discussion sessions and setup the git repository that we have been using and will continue to use for our project. I contributed to and helped write most of the subsections of the project plan such as the Tools and Software, Milestones, and Deadlines. I assisted in conceptualizing the code design and division (classes and attributes) and proposed some of the key deadlines. I will code AI aspect of the game.
 
 ##### Bradley
 
