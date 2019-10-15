@@ -16,6 +16,8 @@
 
 **MarkUs Submitter**: George
 
+**Meetings**: Friday afternoons in person or on Discord:tm:
+
  what the goals and motivations are of your project, and what success looks like how work will be divided, and how to ensure that the division is fair how team members will work together, including tools that you will use and meetings that you will hold how your team members can contribute ideas and work who will be responsible for submitting the deliverables on Markus who will be responsible for checking if team members need help what the protocols are if a team member is having difficulties what your deliverables will be, including "internal" deliverables that are *not* graded what your milestones will be, and when you expect to hit those milestones what your risks are and how to mitigate them (e.g. if a group member drops the course, if a group member does not show up to a presentation) 
 
 ---
@@ -52,39 +54,39 @@ Develop communication skills in a group environment. Good preparation for group 
 - Mobile version
 - Online
 
-#### Work Breakdown Structure
-
----
-
 **Design Presentation**:
 
-- 
+- Introduction
+  - Explain battleship
+    - Rules, etc
+  - Chris
+- Class structure & semantics
+  - UML Diagram?
+  - How everything fits together
+  - Thomas & George
+- Potential challenges and how we plan to overcome them
+  - Allen & Bradley
+- Questions
+  - Everyone
 
 **Programming**:
 
-- Game tester
-  - -
 - AI
   - Allen
 - GUI
-  - -
-  - Game art
-    - -
+  - Bradley & George
 - Game Logic
-  - Board class
-  - Ship class
-  - etc
-- 
+  - Chris & Thomas
 
 **Final Presentation**:
 
-- 
+- TBD
 
 #### Tools & Software
 
 ---
 
-Programming language: Python :snake:
+Programming language: Python 3.7.x :snake:
 
 GUI Library: PyGame
 
@@ -92,25 +94,53 @@ Version control: Github
 
 Communication software: Discord:tm:
 
+- Communicate with TA using email & in-person
+
 Documenting: Markdown
 
-Presentation: Powerpoint
+Presentation: Google Slides (exported as a ppt)
 
 #### Deliverables & Milestones
 
 ---
 
 1. Project Plan
+
+   - Due 14 Oct 2019
+
 2. Class design and program structure
+
+   - By Friday 18 October 2019
+
    - How all the classes are going to interact
-3. Project timeline
-   - When we expect things to be completed
+
+3. Design Presentation
+
+   - Due 21 October 2019 @ 11pm
+
 4. Game backend
+
+   - By week 8 (9 November..?)
+
    - Core logic of the game
+
 5. GUI plan
+
+   - By 25 Oct
+
    - Drawings, concept art
+
 6. GUI Complete
+
+   - By week 8
+
 7. Project Complete
+
+   - By week 9
+
+8. Final Presentation
+
+   - Week 10 & 11
 
 #### Deadlines
 
@@ -164,8 +194,10 @@ Presentation: Powerpoint
 
 ##### George
 
+- Typing
+
 ##### Allen
-My first contribution was the idea for the game's title. I was involved in all our group's brainstorming and discussion sessions and setup the git repository that we have been using and will continue to use for our project. I contributed to and helped write the  Tools and Software, Milestones, and Deadlines subsections of the project plan. I will code AI aspect of game.
+My first contribution was the idea for the game's title. I was involved in all our group's brainstorming and discussion sessions and setup the git repository that we have been using and will continue to use for our project. I contributed to and helped write the Tools and Software, Milestones, and Deadlines subsections of the project plan. I will code AI aspect of game.
 
 ##### Bradley
 
