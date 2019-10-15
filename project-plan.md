@@ -20,7 +20,7 @@
 
 ---
 
-![](D:\Projects\CSC290Battleship\WBS.svg)
+![](WBS.svg)
 
 ---
 ##### Overall scope: have a functional game of battleship, be able to play against another human or the computer.
