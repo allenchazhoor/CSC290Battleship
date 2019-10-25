@@ -11,6 +11,7 @@ class App:
         print(crayons.green('Instantiated App'))
 
     def start(self):
+        """Display the window and start the game"""
 
         pygame.init()
 
@@ -29,11 +30,15 @@ class App:
         self.loop()
 
     def keyboard(self, event):
+        """Handle a keyboard event"""
+
         if event.key == pygame.K_q:
             print(crayons.red('Q key pressed, exit'))
             self._running = False
 
     def handle_events(self):
+        """Loops through pygame events and handle them"""
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 print(crayons.red('Exit requested'))
@@ -42,6 +47,7 @@ class App:
                 self.keyboard(event)
 
     def cleanup(self):
+        """Quits pygame and cleans up"""
 
         pygame.quit()
         
@@ -49,17 +55,23 @@ class App:
 
 
     def logic(self):
+        """Handles the game logic on each loop"""
         pass
 
     def render(self):
         
         self.screen.fill( self.fill_color ) # Clear screen
 
-        pygame.draw.rect(self.screen, (255, 255, 255), (0, 0, 100, 100))
+        # Begin drawing code     
+
+        pygame.draw.rect(self.screen, (255, 255, 255), (0, 0, 100, 100)) # Draw rect, just a test
+
+        # End drawing code
 
         pygame.display.flip() # Render
 
     def loop(self):
+        """Main game loop"""
 
         while self._running:
             
