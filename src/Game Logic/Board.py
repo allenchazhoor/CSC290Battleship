@@ -93,6 +93,9 @@ class BattlePlan(Board):
     
     
     def get_ship_size(ship:str) -> int: 
+        """
+        Returns the size of each unique ships' string representation 
+        """
         if ship == Board.SUBMARINE: 
             return 3 
         if ship == Board.DESTROYER:
@@ -162,7 +165,6 @@ class BattleField(Board):
         if self.valid_coordinate(coord) and self.get(coord) != Board.EMPTY:
             self.get_board()[row][col] = Board.HIT
 
-        if self.valid_coordinate(coord) and self.get(coord) == Board.EMPTY:
-            self.get_board()[row][col] = Board.MISS
+        self.get_board()[row][col] = Board.MISS
          
    
