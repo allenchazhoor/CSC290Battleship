@@ -6,7 +6,7 @@ This module contains the main program code for the Battleship Board.
 It is responsible for initializing an instance of a Battleship Board and its
 supporting methods.
 """
-
+from __future__ import annotations
 
 class Board:
     """
@@ -71,6 +71,9 @@ class Board:
         :return: true or false 
         """
         return coord[0] < self.size and coord[1] < self.size and coord[0] > 0 and coord[1] > 0 
+    
+    def get_board() -> List[List[str]]:
+        return self._board 
 
 
 class BattlePlan(Board):
@@ -102,17 +105,35 @@ class BattlePlan(Board):
             return 2 
         else:
             return 0 
+        
+    def can_place(coord: tuple[int, int], ship: str, dx: int, dy: int) -> bool:
+        """
+        Sees if you can place the ship in that coordinate in a specific direction
+        
+        """
+        row, col = coord
+        
+        while size < ship.size and check_validcord(row, col) and self.get((row,col)) != self.EMPTY:
+            row += dx
+            col += dy
 
-    def place_ship(self, coord: tuple[int, int], ship: str, direction: str, lenght: int):
+        return self.check_validcord(row, col) and self.get((row, col)) != self.EMPTY  
+        # If the loop ends the you can't place it if the current coordinate is either invalid or not EMPTY 
+        
+    def place_ship(self, coord: tuple[int, int], ship: str, dx: int, dy: int) -> None:
+        """
+        Modifies the board by placing the ship onto the original board 
+        """
 
         row, col = coord
-
-        possible_row = row
-        possible_col = col
-        while self.board[row][col] == EMPTY and self.valid_coordinate((possible_row, possible_col)):
-
-
-
+        size = 0 
+        
+        while self.can_place(coord, ship, dx, dy) and size < self.get_ship_size(ship):
+            self.get_board()[row][col] == ship 
+            row += dx
+            col += dy 
+            
+        
 class BattleField(Board):
     """
     A board that stores where the player shot
