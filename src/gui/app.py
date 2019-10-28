@@ -1,5 +1,5 @@
 import pygame, crayons
-from gui.button import Button
+from gui.button import Button, Style
 from enum import Enum
 
 class App:
@@ -32,9 +32,11 @@ class App:
         
         self.render_opt = App.render_option.title_screen
 
-        self.button = Button(100, 100, 100, 100, (255,255,255), "abc", lambda: print(crayons.cyan('clicked!')))
+        self.button = Button(100, 100, 100, 100, Style(bg = (255,255,255), hbg = (0,0,0), tcolor = (255,0,0)),
+            "abc", lambda: print(crayons.cyan('clicked!')))
 
-        self.exit = Button(0, 0, 200, 70, (233, 30, 99), "Exit", lambda: App.instance.stop())
+        self.exit = Button(0, 0, 200, 70, Style(bg = (233, 30, 99), hbg = (255, 96, 144), tcolor = (0,0,0)),
+            "Exit", lambda: App.instance.stop())
 
         print(crayons.green('Instantiated App'))
 
