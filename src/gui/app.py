@@ -1,5 +1,6 @@
 import pygame, crayons
 from gui.button import Button
+from enum import Enum
 
 class App:
 
@@ -7,31 +8,45 @@ class App:
 
     fill_color = (0, 0, 0) # RGB black
 
+    background = pygame.image.load('resources/background.jpg')
+    title = pygame.image.load('resources/title.png')
+    play_button = pygame.image.load('resources/play.png')
+    info_button = pygame.image.load('resources/info.png')
+
+    arial = pygame.font.SysFont("Arial", 30)
+
+    button_font = pygame.font.SysFont("Calibri", 30)
+
+    class render_option(Enum):
+        title_screen = 0
+        game = 1
+        settings = 2
+
     def __init__(self):
-        self._running = False
-        self.size = self.width, self.height = (1000, 1000)
+
         App.instance = self
+        
+        self._running = False
+        
+        self.size = self.width, self.height = (1000, 1000)
+        
+        self.render_opt = App.render_option.title_screen
+
+        self.button = Button(100, 100, 100, 100, (255,255,255), "abc", lambda: print(crayons.cyan('clicked!')))
+
+        self.exit = Button(0, 0, 200, 70, (233, 30, 99), "Exit", lambda: App.instance.stop())
 
         print(crayons.green('Instantiated App'))
+
+    def stop(self):
+        self._running = False
 
     def start(self):
         """Display the window and start the game"""
 
-        pygame.init()
-
-        pygame.font.init()
-
-        print(crayons.green('Initialized PyGame'))
-
-        self.arial = pygame.font.SysFont("Arial", 30)
-
         pygame.display.set_caption('DreadNought')
 
         self.screen = pygame.display.set_mode(self.size)
-
-        # Stuff
-
-        self.button = Button(100, 100, 100, 100, (255,255,255), "abc", lambda: print(crayons.cyan('clicked!')))
 
         self._running = True
 
@@ -48,7 +63,10 @@ class App:
         
         pos = pygame.mouse.get_pos()
 
-        self.button.check_mouse(pos)
+        if self.render_opt == App.render_option.game:
+            self.button.check_mouse(pos)
+        
+        self.exit.check_mouse(pos)
 
     def handle_events(self):
         """Loops through pygame events and handle them"""
@@ -76,24 +94,24 @@ class App:
     def render(self):
 
         self.screen.fill(self.fill_color)  # Clear screen
-        title_screen_rendered = False
 
         # Begin drawing code
-        if title_screen_rendered:
-            # Render Game
-            pass
-        else:
+        if self.render_opt == App.render_option.title_screen:
             # Render Title Screen
-            background = pygame.image.load('background.jpg')
-            title = pygame.image.load('title.png')
-            play_button = pygame.image.load('play.png')
-            info_button = pygame.image.load('info.png')
-            self.screen.blit(background, (0, 0))
-            self.screen.blit(title, (235, 150))
-            self.screen.blit(play_button, (300, 450))
-            self.screen.blit(info_button, (300, 600))
+            
+            self.screen.blit(self.background, (0, 0))
+            self.screen.blit(self.title, (235, 150))
+            self.screen.blit(self.play_button, (300, 450))
+            self.screen.blit(self.info_button, (300, 600))
+        elif self.render_opt == App.render_option.game:
+            # Render game
+            
+            self.button.render()
 
-        self.button.render()
+        elif self.render_opt == App.render_option.settings:
+            pass
+
+        self.exit.render()
 
         # End drawing code
 
