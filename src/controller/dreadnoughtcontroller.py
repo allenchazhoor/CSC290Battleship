@@ -1,5 +1,5 @@
-class dreadnought_controller:
-    
+class DreadnoughtController:
+
     def __init__(self):
         pass
 

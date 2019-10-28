@@ -1,8 +1,10 @@
-import pygame, crayons
+import pygame
+import crayons
+
 
 class App:
 
-    fill_color = (0, 0, 0) # RGB black
+    fill_color = (0, 0, 0)  # RGB black
 
     def __init__(self):
         self._running = False
@@ -50,38 +52,50 @@ class App:
         """Quits pygame and cleans up"""
 
         pygame.quit()
-        
-        print(crayons.green('Game loop exited, PyGame quit'))
 
+        print(crayons.green('Game loop exited, PyGame quit'))
 
     def logic(self):
         """Handles the game logic on each loop"""
         pass
 
     def render(self):
-        
-        self.screen.fill( self.fill_color ) # Clear screen
 
-        # Begin drawing code     
+        self.screen.fill(self.fill_color)  # Clear screen
+        title_screen_rendered = False
 
-        pygame.draw.rect(self.screen, (255, 255, 255), (0, 0, 100, 100)) # Draw rect, just a test
+        # Begin drawing code
+        if title_screen_rendered:
+            # Render Game
+            pass
+        else:
+            # Render Title Screen
+            background = pygame.image.load('background.jpg')
+            title = pygame.image.load('title.png')
+            play_button = pygame.image.load('play.png')
+            info_button = pygame.image.load('info.png')
+            self.screen.blit(background, (0, 0))
+            self.screen.blit(title, (235, 150))
+            self.screen.blit(play_button, (300, 450))
+            self.screen.blit(info_button, (300, 600))
 
         # End drawing code
 
-        pygame.display.flip() # Render
+        pygame.display.flip()  # Render
 
     def loop(self):
         """Main game loop"""
 
         while self._running:
-            
+
             self.handle_events()
 
             self.logic()
 
             self.render()
-        
+
         self.cleanup()
+
 
 if __name__ == '__main__':
 
