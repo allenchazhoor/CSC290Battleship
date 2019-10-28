@@ -1,12 +1,16 @@
 import pygame, crayons
+from gui.button import Button
 
 class App:
+
+    instance = None
 
     fill_color = (0, 0, 0) # RGB black
 
     def __init__(self):
         self._running = False
         self.size = self.width, self.height = (1000, 1000)
+        App.instance = self
 
         print(crayons.green('Instantiated App'))
 
@@ -25,6 +29,10 @@ class App:
 
         self.screen = pygame.display.set_mode(self.size)
 
+        # Stuff
+
+        self.button = Button(100, 100, 100, 100, (255,255,255), "abc", lambda: print(crayons.cyan('clicked!')))
+
         self._running = True
 
         self.loop()
@@ -36,6 +44,12 @@ class App:
             print(crayons.red('Q key pressed, exit'))
             self._running = False
 
+    def click(self, event):
+        
+        pos = pygame.mouse.get_pos()
+
+        self.button.check_mouse(pos)
+
     def handle_events(self):
         """Loops through pygame events and handle them"""
 
@@ -45,6 +59,8 @@ class App:
                 self._running = False
             elif event.type == pygame.KEYDOWN:
                 self.keyboard(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                self.click(event)
 
     def cleanup(self):
         """Quits pygame and cleans up"""
@@ -66,6 +82,8 @@ class App:
 
         pygame.draw.rect(self.screen, (255, 255, 255), (0, 0, 100, 100)) # Draw rect, just a test
 
+        self.button.render()
+
         # End drawing code
 
         pygame.display.flip() # Render
@@ -82,9 +100,3 @@ class App:
             self.render()
         
         self.cleanup()
-
-if __name__ == '__main__':
-
-    app = App()
-
-    app.start()
