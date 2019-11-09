@@ -8,28 +8,29 @@ supporting methods.
 """
 from __future__ import annotations
 
+
 class Board:
     """
     A board for a battleship game
     Super class for BattlePlan and BattleField
-    
-    === Private Attributes === 
-    _board: 
-        The 11 by 11 board used for the game 
-    _player: 
+
+    === Private Attributes ===
+    _board:
+        The 11 by 11 board used for the game
+    _player:
         The current player
-    _size: 
+    _size:
         The size of the board
     """
     # === Class Attributes ===
-    # String representation of each unique ship piece on the Board 
+    # String representation of each unique ship piece on the Board
     SUBMARINE = 'S'  # length 3
     DESTROYER = 'D'  # length 3
     BATTLESHIP = 'B'  # length 4
     CARRIER = 'C'  # length 5
     PATROL_BOAT = 'P'  # length 2
-    EMPTY = " " 
-    
+    EMPTY = " "
+
     P1 = 'P1'
     P2 = 'P2'
 
@@ -43,7 +44,7 @@ class Board:
 
         Player corresponds to which player the board belongs (P1 or P2)
         """
-        # creates the 11 by 11 board with coordinates on the sides displayed 
+        # creates the 11 by 11 board with coordinates on the sides displayed
         self._board = []
         self._player = player
 
@@ -60,20 +61,19 @@ class Board:
         :param coord: coordinates for the board at ROW, COL
         :return: SUBMARINE, DESTROYER, CARRIER, BATTLESHIP, PATROL_BOAT, EMPTY
         """
-  
+
         return self._board[coord[0]][coord[1]]
 
-
-    def valid_coordinate(coord: tuple[int, int]) -> bool:
+    def valid_coordinate(self, coord: tuple[int, int]) -> bool:
         """
-        Checks a position and see if it is valid 
+        Checks a position and see if it is valid
         :param coord: coordinates for the board at ROW, COL
-        :return: true or false 
+        :return: true or false
         """
-        return coord[0] < self._size and coord[1] < self._size and coord[0] > 0 and coord[1] > 0 
-    
-    def get_board() -> List[List[str]]:
-        return self._board 
+        return coord[0] < self._size and coord[1] < self._size and coord[0] > 0 and coord[1] > 0
+
+    def get_board(self) -> List[List[str]]:
+        return self._board
 
 
 class BattlePlan(Board):
@@ -90,81 +90,93 @@ class BattlePlan(Board):
         """
 
         Board.__init__(self, player)
-    
-    
-    def get_ship_size(ship:str) -> int: 
+
+    def get_ship_size(self, ship: str) -> int:
         """
-        Returns the size of each unique ships' string representation 
+        Returns the size of each unique ships' string representation
         """
-        if ship == Board.SUBMARINE: 
-            return 3 
+        if ship == Board.SUBMARINE:
+            return 3
         if ship == Board.DESTROYER:
-            return 3 
+            return 3
         if ship == Board.BATTLESHIP:
-            return 4 
-        if ship == Board.CARRIER: 
-            return 5 
+            return 4
+        if ship == Board.CARRIER:
+            return 5
         if ship == Board.PATROL_BOAT:
-            return 2 
+            return 2
         else:
-            return 0 
-        
-    def can_place(coord: tuple[int, int], ship: str, dx: int, dy: int) -> bool:
+            return 0
+
+    def can_place(self, coord: tuple[int, int], ship: str, dx: int, dy: int) -> bool:
         """
         Sees if you can place the ship in that coordinate in a specific direction
-        
+
         """
         row, col = coord
-        
-        # checks each position up until the ships size and sees if the coordinate is a valid placement 
+
+        # checks each position up until the ships size and sees if the coordinate is a valid placement
         while self._size < self.get_ship_size(ship) and self.valid_coordinate(coord) \
                 and self.get(coord) != self.EMPTY:
             row += dx
             col += dy
 
         return self.valid_coordinate(coord) and self.get(coord) != self.EMPTY
-        # If the loop ends the you can't place it if the current coordinate is either invalid or not EMPTY 
-        
+        # If the loop ends the you can't place it if the current coordinate is either invalid or not EMPTY
+
     def place_ship(self, coord: tuple[int, int], ship: str, dx: int, dy: int) -> None:
         """
-        Modifies the board by placing the ship onto the original board 
+        Modifies the board by placing the ship onto the original board
         """
 
         row, col = coord
-        size = 0 
-        
+        size = 0
+
         while self.can_place(coord, ship, dx, dy) and size < self.get_ship_size(ship):
-            self.get_board()[row][col] = ship 
+            self.get_board()[row][col] = ship
             row += dx
-            col += dy 
-            
-        
+            col += dy
+
+
 class BattleField(Board):
     """
-    A board that stores where the player shot
+    A board that stores where the player shot and how many hits the player has
 
     """
 
-    def __init__(self, player):
+    def __init__(self, player, _number_of_hits):
         """
         Initialize the board
 
         """
 
         Board.__init__(self, player)
+        self._number_of_hits = 0
+
         #self.battle_plan = Battle_Plan
 
     def hit(self, coord: tuple[int, int]):
         """
-        Modifies the board to display whether it was a hit ("x") or miss ("O")
-        
-        :param coord: Takes in an x and y coordinate 
-        :return: None 
+        Modifies the board to display whether it was a hit ("x") or miss ("O").
+        Also updates number of hits
+
+        :param coord: Takes in an x and y coordinate
+        :return: None
         """
         row, col = coord
         if self.valid_coordinate(coord) and self.get(coord) != Board.EMPTY:
             self.get_board()[row][col] = Board.HIT
+            self._number_of_hits += 1
 
         self.get_board()[row][col] = Board.MISS
-         
-   
+
+    def get_nb_of_hits(self):
+        """
+
+        :return: Number of hits
+        """
+        return self._number_of_hits
+
+
+
+
