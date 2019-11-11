@@ -68,7 +68,6 @@ class AIPlayer:
         """
         self.health -= 1
         self.shipCoords.remove((x, y))
-        self.possMoves.remove((x, y))
         if self.health == 0:
             self.alive = False
 
