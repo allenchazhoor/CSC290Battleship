@@ -17,7 +17,7 @@ class App:
 
     button_font = pygame.font.SysFont("Calibri", 30)
 
-    class render_option(Enum):
+    class mode(Enum):
         title_screen = 0
         game = 1
         settings = 2
@@ -30,15 +30,22 @@ class App:
         
         self.size = self.width, self.height = (1000, 1000)
         
-        self.render_opt = App.render_option.title_screen
+        self.mode = App.mode.title_screen
 
-        self.button = Button(100, 100, 100, 100, Style(bg = (255,255,255), hbg = (0,0,0), tcolor = (255,0,0)),
-            "abc", lambda: print(crayons.cyan('clicked!')))
+        self.button = Button(100, 100, 100, 100,
+            "abc", lambda: print(crayons.cyan('clicked!')), Style(bg = (255,255,255), hbg = (0,0,0), tcolor = (255,0,0)))
 
-        self.exit = Button(0, 0, 200, 70, Style(bg = (233, 30, 99), hbg = (255, 96, 144), tcolor = (0,0,0)),
-            "Exit", lambda: App.instance.stop())
+        self.exit = Button(0, 0, 200, 70,
+            "Exit", lambda: App.instance.stop(), Style(bg = (233, 30, 99), hbg = (255, 96, 144), tcolor = (0,0,0)))
+
+        self.play_button = Button(300, 450, 300, 200, "Play", lambda: App.instance.set_mode(App.mode.game))
+
+        
 
         print(crayons.green('Instantiated App'))
+
+    def set_mode(self, mode):
+        self.mode = mode
 
     def stop(self):
         self._running = False
@@ -65,10 +72,12 @@ class App:
         
         pos = pygame.mouse.get_pos()
 
-        if self.render_opt == App.render_option.game:
-            self.button.check_mouse(pos)
+        if self.mode == App.mode.game:
+            self.button.handle_click(pos)
+        elif self.mode == App.mode.title_screen:
+            self.play_button.handle_click(pos)
         
-        self.exit.check_mouse(pos)
+        self.exit.handle_click(pos)
 
     def handle_events(self):
         """Loops through pygame events and handle them"""
@@ -98,19 +107,20 @@ class App:
         self.screen.fill(self.fill_color)  # Clear screen
 
         # Begin drawing code
-        if self.render_opt == App.render_option.title_screen:
-            # Render Title Screen
+        if self.mode == App.mode.title_screen:
+            # Render Title Screenpasspasspass
             
-            self.screen.blit(self.background, (0, 0))
-            self.screen.blit(self.title, (235, 150))
-            self.screen.blit(self.play_button, (300, 450))
-            self.screen.blit(self.info_button, (300, 600))
-        elif self.render_opt == App.render_option.game:
+            self.screen.blit(App.background, (0, 0))
+            self.screen.blit(App.title, (235, 150))
+            self.screen.blit(App.play_button, (300, 450))
+            self.screen.blit(App.info_button, (300, 600))
+            self.play_button.render()
+        elif self.mode == App.mode.game:
             # Render game
             
             self.button.render()
 
-        elif self.render_opt == App.render_option.settings:
+        elif self.mode == App.mode.settings:
             pass
 
         self.exit.render()
