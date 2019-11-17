@@ -10,17 +10,18 @@ class App:
 
     background = pygame.image.load('resources/background.jpg')
     title = pygame.image.load('resources/title.png')
-    play_button = pygame.image.load('resources/play.png')
-    info_button = pygame.image.load('resources/info.png')
 
     arial = pygame.font.SysFont("Arial", 30)
 
     button_font = pygame.font.SysFont("Calibri", 30)
 
+    title_screen_button_font = pygame.font.SysFont("Calibri", 80)
+
     class mode(Enum):
         title_screen = 0
         game = 1
         settings = 2
+        info = 3
 
     def __init__(self):
 
@@ -33,14 +34,16 @@ class App:
         self.mode = App.mode.title_screen
 
         self.button = Button(100, 100, 100, 100,
-            "abc", lambda: print(crayons.cyan('clicked!')), Style(bg = (255,255,255), hbg = (0,0,0), tcolor = (255,0,0)))
+            "abc", App.button_font, lambda: print(crayons.cyan('clicked!')), Style(bg = (255,255,255), hbg = (0,0,0), tcolor = (255,0,0)))
 
         self.exit = Button(0, 0, 200, 70,
-            "Exit", lambda: App.instance.stop(), Style(bg = (233, 30, 99), hbg = (255, 96, 144), tcolor = (0,0,0)))
+            "Exit", App.button_font, lambda: App.instance.stop(), Style(bg = (233, 30, 99), hbg = (255, 96, 144), tcolor = (0,0,0)))
 
-        self.play_button = Button(300, 450, 300, 200, "Play", lambda: App.instance.set_mode(App.mode.game))
+        s = Style((10, 123, 209), (10, 123, 209), (255,255,255))
 
+        self.play_button = Button(300, 450, 400, 125, "Play", App.title_screen_button_font, lambda: App.instance.set_mode(App.mode.game), style = s) 
         
+        self.info_button = Button(300, 600, 400, 125, "Info", App.title_screen_button_font, lambda: App.instance.set_mode(App.mode.info), style = s)
 
         print(crayons.green('Instantiated App'))
 
@@ -76,6 +79,7 @@ class App:
             self.button.handle_click(pos)
         elif self.mode == App.mode.title_screen:
             self.play_button.handle_click(pos)
+            self.info_button.handle_click(pos)
         
         self.exit.handle_click(pos)
 
@@ -112,9 +116,8 @@ class App:
             
             self.screen.blit(App.background, (0, 0))
             self.screen.blit(App.title, (235, 150))
-            self.screen.blit(App.play_button, (300, 450))
-            self.screen.blit(App.info_button, (300, 600))
             self.play_button.render()
+            self.info_button.render()
         elif self.mode == App.mode.game:
             # Render game
             

@@ -5,14 +5,14 @@ Style = namedtuple("Style", "bg hbg tcolor")
 
 class Button:
 
-    def __init__(self, x, y, width, height, text, on_click, style = Style((255,255,255), (255,255,255), (0,0,0))):
+    def __init__(self, x, y, width, height, text, font, on_click, style = Style((255,255,255), (255,255,255), (0,0,0))):        
         self.x = x
         self.y = y
         self.width = width
         self.height = height
         self.style = style
-        self.text = gui.app.App.button_font.render(text, True, style.tcolor) if text else None
-        self.text_size = gui.app.App.button_font.size(text)
+        self.text = font.render(text, True, style.tcolor)
+        self.text_size = font.size(text)
         self.text_pos = ((self.x)+(self.width-self.text_size[0])//2, (self.y)+(self.height-self.text_size[1])//2)
         self.on_click = on_click
         self.disabled = False
