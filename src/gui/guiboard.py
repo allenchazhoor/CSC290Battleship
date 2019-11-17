@@ -1,0 +1,101 @@
+import pygame, gui.app
+
+class guiboard:
+
+    instance = None
+
+    rows = 10
+    cols = 10
+
+    line_thickness = 5
+
+    x = 100
+    y = 150
+
+    width = 800
+    height = 800
+
+    disabled = False
+
+    def __init__(self):
+        if guiboard.instance:
+            raise Exception
+
+        guiboard.letters = [(let, gui.app.App.board_font.render(let, True, (0,0,0))) for let in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+
+        guiboard.nums = [(n, gui.app.App.board_font.render(n, True, (0,0,0))) for n in list("123456789") + ['10', '11']]
+
+    def init():
+        guiboard.instance = guiboard()
+
+    def render(self):
+        
+        #pygame.draw.rect(gui.app.App.instance.screen, (0,0,0), (guiboard.x, guiboard.y, guiboard.width, guiboard.height))
+
+        drow = guiboard.height / guiboard.rows
+        dcol = guiboard.height / guiboard.cols
+
+        for r in range(guiboard.rows + 1):
+
+            if r == guiboard.rows:
+                pygame.draw.rect(gui.app.App.instance.screen, (0,0,0),
+                (guiboard.x,
+                guiboard.y + r * drow, guiboard.width + guiboard.line_thickness,
+                guiboard.line_thickness))
+
+            else:
+                pygame.draw.rect(gui.app.App.instance.screen, (0,0,0),
+                (guiboard.x,
+                guiboard.y + r * drow, guiboard.width,
+                guiboard.line_thickness))
+
+                wid = gui.app.App.board_font.size(guiboard.nums[r][0])[0]
+
+                gui.app.App.instance.screen.blit(guiboard.nums[r][1], (guiboard.x - (wid/2) - 50, guiboard.y + r * drow + (dcol / 4)))
+
+        for c in range(guiboard.cols + 1):
+
+            if c != guiboard.cols:
+
+                wid = gui.app.App.board_font.size(guiboard.letters[c][0])[0]
+
+                gui.app.App.instance.screen.blit(guiboard.letters[c][1], (guiboard.x + c * dcol + ((dcol+guiboard.line_thickness) / 2) - (wid / 2), guiboard.y - 50))
+            
+            pygame.draw.rect(gui.app.App.instance.screen, (0,0,0), (guiboard.x + c * dcol, guiboard.y, guiboard.line_thickness, guiboard.height))
+
+        px, py = self.get_coords(pygame.mouse.get_pos())
+
+        print(f"({px}, {py})")
+
+    def get_coords(self, mouse):
+        
+        if not self.check_bounds(*mouse):
+            return None, None
+
+        drow = guiboard.height / guiboard.rows
+        dcol = guiboard.height / guiboard.cols
+
+        x = mouse[0]//(drow + guiboard.line_thickness)
+        y = mouse[1]//(dcol + guiboard.line_thickness)
+
+        if (x > guiboard.cols):
+            x = guiboard.cols
+
+        if (y > guiboard.rows):
+            y = guiboard.rows
+
+        return x, y
+
+    def check_bounds(self, x, y):
+        return self.x < x < self.x + self.width and self.y < y < self.y + self.height
+
+    def handle_click(self, mouse):
+
+        if self.disabled:
+            return
+
+        x = mouse[0]
+        y = mouse[1]
+
+        if self.check_bounds(x, y):
+            self.on_click()

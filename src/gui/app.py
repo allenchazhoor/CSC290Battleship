@@ -1,12 +1,13 @@
 import pygame, crayons
 from gui.button import Button, Style
+from gui.guiboard import guiboard
 from enum import Enum
 
 class App:
 
     instance = None
 
-    fill_color = (0, 0, 0) # RGB black
+    fill_color = (255, 255, 255) # RGB white
 
     background = pygame.image.load('resources/background.jpg')
     title = pygame.image.load('resources/title.png')
@@ -17,6 +18,10 @@ class App:
 
     title_screen_button_font = pygame.font.SysFont("Calibri", 80)
 
+    board_font = pygame.font.SysFont("Calibri", 50)
+
+    message = "Place your ships!"
+
     class mode(Enum):
         title_screen = 0
         game = 1
@@ -24,6 +29,11 @@ class App:
         info = 3
 
     def __init__(self):
+
+        if App.instance:
+            raise Exception
+
+        guiboard.init() # Initialize guiboard singleton
 
         App.instance = self
         
@@ -36,8 +46,12 @@ class App:
         self.button = Button(100, 100, 100, 100,
             "abc", App.button_font, lambda: print(crayons.cyan('clicked!')), Style(bg = (255,255,255), hbg = (0,0,0), tcolor = (255,0,0)))
 
+        self.button.disabled = True
+
         self.exit = Button(0, 0, 200, 70,
             "Exit", App.button_font, lambda: App.instance.stop(), Style(bg = (233, 30, 99), hbg = (255, 96, 144), tcolor = (0,0,0)))
+
+        self.exit.disabled = True
 
         s = Style((10, 123, 209), (10, 123, 209), (255,255,255))
 
@@ -120,8 +134,12 @@ class App:
             self.info_button.render()
         elif self.mode == App.mode.game:
             # Render game
-            
+
+            guiboard.instance.render()
+
             self.button.render()
+
+            self.screen.blit(App.board_font.render(App.message, True, (0,0,0)), ((self.size[0] - App.board_font.size(App.message)[0])/2, 30))
 
         elif self.mode == App.mode.settings:
             pass
