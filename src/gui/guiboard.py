@@ -28,6 +28,13 @@ class guiboard:
     def init():
         guiboard.instance = guiboard()
 
+    def square_coords(row, col):
+
+        drow = guiboard.height / guiboard.rows
+        dcol = guiboard.height / guiboard.cols
+
+        return (guiboard.x + row * dcol + guiboard.line_thickness, guiboard.y + col * drow + guiboard.line_thickness, dcol - guiboard.line_thickness, drow - guiboard.line_thickness)
+
     def render(self):
         
         #pygame.draw.rect(gui.app.App.instance.screen, (0,0,0), (guiboard.x, guiboard.y, guiboard.width, guiboard.height))
@@ -68,7 +75,7 @@ class guiboard:
         print(f"({px}, {py})")
 
         if px is not None and py is not None:
-            pygame.draw.rect(gui.app.App.instance.screen, (3, 148, 252), (guiboard.x + px * dcol + guiboard.line_thickness, guiboard.y + py * drow + guiboard.line_thickness, dcol - guiboard.line_thickness, drow - guiboard.line_thickness))
+            pygame.draw.rect(gui.app.App.instance.screen, (3, 148, 252), guiboard.square_coords(px, py))
 
     def get_coords(self, mouse):
         
