@@ -67,6 +67,9 @@ class guiboard:
 
         print(f"({px}, {py})")
 
+        if px is not None and py is not None:
+            pygame.draw.rect(gui.app.App.instance.screen, (3, 148, 252), (guiboard.x + px * dcol + guiboard.line_thickness, guiboard.y + py * drow + guiboard.line_thickness, dcol - guiboard.line_thickness, drow - guiboard.line_thickness))
+
     def get_coords(self, mouse):
         
         if not self.check_bounds(*mouse):
@@ -75,8 +78,8 @@ class guiboard:
         drow = guiboard.height / guiboard.rows
         dcol = guiboard.height / guiboard.cols
 
-        x = mouse[0]//(drow + guiboard.line_thickness)
-        y = mouse[1]//(dcol + guiboard.line_thickness)
+        x= (mouse[0] - guiboard.x)//(drow)# + guiboard.line_thickness)
+        y = (mouse[1] - guiboard.y)//(dcol)# + guiboard.line_thickness)
 
         if (x > guiboard.cols):
             x = guiboard.cols
@@ -94,8 +97,6 @@ class guiboard:
         if self.disabled:
             return
 
-        x = mouse[0]
-        y = mouse[1]
+        x, y = self.get_coords(mouse)
 
-        if self.check_bounds(x, y):
-            self.on_click()
+        print(f"Clicked: ({x},{y})")

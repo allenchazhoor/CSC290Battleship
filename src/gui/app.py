@@ -22,6 +22,8 @@ class App:
 
     message = "Place your ships!"
 
+    pause = False
+
     class mode(Enum):
         title_screen = 0
         game = 1
@@ -91,6 +93,7 @@ class App:
 
         if self.mode == App.mode.game:
             self.button.handle_click(pos)
+            guiboard.instance.handle_click(pos)
         elif self.mode == App.mode.title_screen:
             self.play_button.handle_click(pos)
             self.info_button.handle_click(pos)
@@ -100,7 +103,20 @@ class App:
     def handle_events(self):
         """Loops through pygame events and handle them"""
 
-        for event in pygame.event.get():
+        events = pygame.event.get()
+
+        for event in events:
+            if event.type == pygame.ACTIVEEVENT:
+                if event.state == 1:
+                    if event.gain == 0: # Mouse has left the game
+                        App.pause = True
+                    elif event.gain == 1:
+                        App.pause = False
+
+        if App.pause:
+            return
+
+        for event in events:
             if event.type == pygame.QUIT:
                 print(crayons.red('Exit requested'))
                 self._running = False
@@ -156,6 +172,9 @@ class App:
         while self._running:
 
             self.handle_events()
+
+            if App.pause:
+                continue
 
             self.logic()
 
