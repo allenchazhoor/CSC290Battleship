@@ -86,9 +86,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="width" value="3840" />
-    <option name="height" value="2160" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="width" value="1943" />
+    <option name="height" value="1103" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -269,12 +269,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/CS/csc148/assignments/a1/assignment-1/bill.py">
+    <entry file="file://$PROJECT_DIR$/../CS/csc148/assignments/a1/assignment-1/bill.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-357" />
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/CS/csc148/assignments/a1/assignment-1/application.py">
+    <entry file="file://$PROJECT_DIR$/../CS/csc148/assignments/a1/assignment-1/application.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Game Logic/Board.py">
