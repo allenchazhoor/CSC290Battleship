@@ -40,6 +40,8 @@ class App:
         App.instance = self
         
         self._running = False
+
+        self.game = controller()
         
         self.size = self.width, self.height = (1000, 1000)
         

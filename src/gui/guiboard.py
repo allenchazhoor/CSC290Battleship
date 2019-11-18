@@ -1,6 +1,11 @@
 import pygame, gui.app
+from enum import Enum
 
 class guiboard:
+
+    class player(Enum):
+        p1 = 0,
+        p2 = 1
 
     instance = None
 
@@ -16,6 +21,12 @@ class guiboard:
     height = 800
 
     disabled = False
+
+    placing_ships = True
+
+    active_player = player.p1
+
+    ships = []
 
     def __init__(self):
         if guiboard.instance:
@@ -77,6 +88,9 @@ class guiboard:
         if px is not None and py is not None:
             pygame.draw.rect(gui.app.App.instance.screen, (3, 148, 252), guiboard.square_coords(px, py))
 
+        for sq in guiboard.clicked:
+            pygame.draw.rect(gui.app.App.instance.screen, (255, 0, 0), guiboard.square_coords(sq[0], sq[1]))
+
     def get_coords(self, mouse):
         
         if not self.check_bounds(*mouse):
@@ -107,3 +121,13 @@ class guiboard:
         x, y = self.get_coords(mouse)
 
         print(f"Clicked: ({x},{y})")
+
+        if x is not None and y is not None:
+            guiboard.clicked.append((x, y))
+        
+        if guiboard.placing_ships:
+            if len(guiboard.ships) >= 2:
+                guiboard.ships = [(x,y)]
+            
+            else:
+                guiboard.ships.append[(x,y)]

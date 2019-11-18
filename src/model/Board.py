@@ -91,7 +91,8 @@ class BattlePlan(Board):
 
         Board.__init__(self, player)
 
-    def get_ship_size(self, ship: str) -> int:
+    @staticmethod
+    def get_ship_size(ship: str) -> int:
         """
         Returns the size of each unique ships' string representation
         """
