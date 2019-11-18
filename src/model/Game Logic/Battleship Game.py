@@ -34,7 +34,7 @@ class controller:
         return _whos_turn
 
 
-    def place_ship(coord: tuple[int, int], ship: str, dx: int, dy: int) -> bool:
+    def place_ship(start: tuple[int, int], end: tuple[int, int], ship: str) -> bool:
         """
         Place a ship on P1's or P2's Board.
         Return true if ship was placed.
@@ -45,10 +45,39 @@ class controller:
         :param dx: direction
         :return: True if ship was successfully placed False otherwise
         """
-        if _whos_turn == Board.P1:
-            return _P1_Battle_Plan_Board.place_ship(coord, ship, dx, dy)
+        
+        if start[0] == end[0]:
+            
+            diff = abs(end[1] - start[1])
+
+            dx = 0
+
+            if (end[1] > start[1]):
+                dy = 1
+            else:
+                dy = -1
+
+        elif start[1] == end[1]:
+            
+            diff = abs(end[0] - start[0])
+
+            dy = 0
+
+            if (end[0] > start[0]):
+                dx = 1
+            else:
+                dx = -1
+
         else:
-            return _P2_Battle_Plan_Board.place_ship(coord, ship, dx, dy)
+            return False
+
+        if diff != Board.get_ship_size(ship):
+            return False
+
+        if _whos_turn == Board.P1:
+            return _P1_Battle_Plan_Board.place_ship(start, ship, dx, dy)
+        else:
+            return _P2_Battle_Plan_Board.place_ship(start, ship, dx, dy)
         # Still need to change method place_ship in Board.py so that
         #  it returns a bool
 
