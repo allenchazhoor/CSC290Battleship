@@ -6,4 +6,6 @@ fi;
 
 cd src
 
+echo "Launching Dreadnought"
+
 /usr/bin/env python3 main.py

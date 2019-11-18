@@ -8,6 +8,8 @@ if errorlevel 1 goto eof
 
 cd src
 
+echo "Launching Dreadnought"
+
 python main.py
 
 goto eof

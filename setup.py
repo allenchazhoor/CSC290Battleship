@@ -10,9 +10,12 @@ if not (sys.version_info.major >= 3 and sys.version_info.minor >= 4):
 
     sys.exit(1)
 
+print(f'You are using Python version {sys.version.split()[0]}!')
+
 #old = sys.stdout
 
-#sys.stdout = None
+sys.stdout = None
+sys.stderr = None
 
 with open('requirements.txt') as f:
     for line in f:
