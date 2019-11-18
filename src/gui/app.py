@@ -2,6 +2,7 @@ import pygame, crayons
 from gui.button import Button, Style
 from gui.guiboard import guiboard
 from enum import Enum
+from model.Controller import controller
 
 class App:
 

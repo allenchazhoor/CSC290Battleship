@@ -1,4 +1,4 @@
-import pygame, gui.app
+import pygame, gui.app, crayons
 from enum import Enum
 
 class guiboard:
@@ -25,6 +25,10 @@ class guiboard:
     placing_ships = True
 
     active_player = player.p1
+
+    ships_list = 'SDBCP'
+
+    ships_index = 0
 
     ships = []
 
@@ -83,12 +87,12 @@ class guiboard:
 
         px, py = self.get_coords(pygame.mouse.get_pos())
 
-        print(f"({px}, {py})")
+        #print(f"({px}, {py})")
 
         if px is not None and py is not None:
             pygame.draw.rect(gui.app.App.instance.screen, (3, 148, 252), guiboard.square_coords(px, py))
 
-        for sq in guiboard.clicked:
+        for sq in guiboard.ships:
             pygame.draw.rect(gui.app.App.instance.screen, (255, 0, 0), guiboard.square_coords(sq[0], sq[1]))
 
     def get_coords(self, mouse):
@@ -122,12 +126,23 @@ class guiboard:
 
         print(f"Clicked: ({x},{y})")
 
-        if x is not None and y is not None:
-            guiboard.clicked.append((x, y))
+        if x is None and y is None:
+            return
+        #    guiboard.clicked.append((x, y))
         
         if guiboard.placing_ships:
             if len(guiboard.ships) >= 2:
                 guiboard.ships = [(x,y)]
             
             else:
-                guiboard.ships.append[(x,y)]
+                guiboard.ships.append((x,y))
+
+            if len(guiboard.ships) == 2:
+
+                if gui.app.App.instance.game.place_ship(guiboard.ships[0], guiboard.ships[1], guiboard.ships[guiboard.ships_index]):
+                    guiboard.ships_index += 1
+
+                    print(crayons.red(f'Placed ship at {guiboard.ships}'))
+
+                    if guiboard.ships_index == 5:
+                        guiboard.placing_ships = False

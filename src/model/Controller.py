@@ -8,7 +8,7 @@ supporting methods.
 """
 from __future__ import annotations
 
-import Board
+from model.Board import Board, BattleField, BattlePlan
 
 class controller:
 
@@ -17,11 +17,11 @@ class controller:
         # === Private Attributes ===
         # Variables to keep track of the game.
 
-        self._P1_Battle_Plan_Board = Board()
-        self._P1_Battle_Field_Board = Board()
+        self._P1_Battle_Plan_Board = Board(Board.P1)
+        self._P1_Battle_Field_Board = Board(Board.P1)
 
-        self._P2_Battle_Plan_Board = Board()
-        self._P2_Battle_Field_Board = Board()
+        self._P2_Battle_Plan_Board = Board(Board.P2)
+        self._P2_Battle_Field_Board = Board(Board.P2)
 
         self._whos_turn = Board.P1  # Player One starts
 
@@ -34,7 +34,7 @@ class controller:
         return _whos_turn
 
 
-    def place_ship(start: tuple[int, int], end: tuple[int, int], ship: str) -> bool:
+    def place_ship(self, start: tuple[int, int], end: tuple[int, int], ship: str) -> bool:
         """
         Place a ship on P1's or P2's Board.
         Return true if ship was placed.
@@ -71,7 +71,7 @@ class controller:
         else:
             return False
 
-        if diff != Board.get_ship_size(ship):
+        if diff != BattlePlan.get_ship_size(ship):
             return False
 
         if _whos_turn == Board.P1:
