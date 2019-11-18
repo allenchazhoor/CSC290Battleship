@@ -1,21 +1,36 @@
-python -V 2>NUL
+echo off
+
+set p=python
+
+%p% -V 2>NUL
 
 if errorlevel 1 goto nopython
 
-python setup.py
+%p% setup.py
 
 if errorlevel 1 goto eof
+
+:nopython
+
+echo "Python isnt installed or isnt on your path! Going to attempt looking for Python automatically..."
+
+for /r %LOCALAPPDATA%\Programs\Python %%a in (*) do if "%%~nxa"=="python3.dll" set p=%%~dpnxa
+if defined p (
+echo %p%
+) else (
+echo "Couldn't find Python. Exiting."
+)
+
+set p=%p:python3.dll=python.exe%
+
+goto eof
+
+:launch
 
 cd src
 
 echo "Launching Dreadnought"
 
-python main.py
-
-goto eof
-
-:nopython
-
-echo "Python isnt installed or isnt on your path! Exiting..."
+%p% main.py
 
 :eof
