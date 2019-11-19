@@ -1,8 +1,5 @@
 import sys
-from pip._internal import main as pipmain
-
-def install(package):
-    pipmain(['install', package])
+from subprocess import Popen, PIPE
 
 if not (sys.version_info.major >= 3 and sys.version_info.minor >= 4):
 
@@ -14,12 +11,11 @@ print(f'You are using Python version {sys.version.split()[0]}!')
 
 #old = sys.stdout
 
-sys.stdout = None
-sys.stderr = None
-
 with open('requirements.txt') as f:
-    for line in f:
-        if line:
-            install(line)
+
+    lines = [x for x in f.readlines() if x]
+
+process = Popen([sys.executable, '-m', 'pip', 'install', *lines], stdout=PIPE, stderr=PIPE)
+stdout, stderr = process.communicate()
 
 sys.exit(0)
