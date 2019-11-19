@@ -10,6 +10,8 @@ if errorlevel 1 goto nopython
 
 if errorlevel 1 goto eof
 
+goto eof
+
 :nopython
 
 echo "Python isnt installed or isnt on your path! Going to attempt looking for Python automatically..."
@@ -22,8 +24,6 @@ echo "Couldn't find Python. Exiting."
 )
 
 set p=%p:python3.dll=python.exe%
-
-goto eof
 
 :launch
 
