@@ -108,13 +108,13 @@ class App:
 
         events = pygame.event.get()
 
-        for event in events:
-            if event.type == pygame.ACTIVEEVENT:
-                if event.state == 1:
-                    if event.gain == 0: # Mouse has left the game
-                        App.pause = True
-                    elif event.gain == 1:
-                        App.pause = False
+        #for event in events:
+        #    if event.type == pygame.ACTIVEEVENT:
+        #        if event.state == 1:
+        #            if event.gain == 0: # Mouse has left the game
+        #                App.pause = True
+        #            elif event.gain == 1:
+        #                App.pause = False
 
         if App.pause:
             return
