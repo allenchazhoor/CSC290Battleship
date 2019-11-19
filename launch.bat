@@ -10,7 +10,7 @@ if errorlevel 1 goto nopython
 
 if errorlevel 1 goto eof
 
-goto eof
+goto launch
 
 :nopython
 
