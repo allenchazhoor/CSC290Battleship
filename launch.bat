@@ -24,6 +24,7 @@ echo Python isnt installed or isnt on your path! Going to attempt looking for Py
 
 for /r %LOCALAPPDATA%\Programs\Python %%a in (*) do if "%%~nxa"=="python3.dll" set p=%%~dpnxa
 if defined p (
+    echo Found Python!
 ) else (
 echo Couldn't find Python. Exiting.
 )
