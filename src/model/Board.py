@@ -125,18 +125,31 @@ class BattlePlan(Board):
         return self.valid_coordinate(coord) and self.get(coord) != self.EMPTY
         # If the loop ends the you can't place it if the current coordinate is either invalid or not EMPTY
 
-    def place_ship(self, coord: tuple[int, int], ship: str, dx: int, dy: int) -> None:
+    def place_ship(self, coord: tuple[int, int], ship: str, dx: int, dy: int)\
+            -> bool:
         """
         Modifies the board by placing the ship onto the original board
+        Returns True if the ship was successfully placed. False otherwise.
         """
 
         row, col = coord
         size = 0
 
-        while self.can_place(coord, ship, dx, dy) and size < self.get_ship_size(ship):
+        # while self.can_place(coord, ship, dx, dy) and size < self.get_ship_size(ship):
+        #     self.get_board()[row][col] = ship
+        #     row += dx
+        #     col += dy
+        #     size +=1
+
+        while size < self.get_ship_size(ship):
+            if not self.can_place(coord, ship, dx, dy):
+                return False
             self.get_board()[row][col] = ship
             row += dx
             col += dy
+            size += 1
+
+        return True
 
 
 class BattleField(Board):

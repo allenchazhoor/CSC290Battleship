@@ -25,64 +25,58 @@ class controller:
 
         self._whos_turn = Board.P1  # Player One starts
 
-    def get_whos_turn():
+    def get_whos_turn(self):
         """
         Return whose turn it is
 
         :return: P1 or P2
         """
-        return _whos_turn
+        return self._whos_turn
 
-
-    def place_ship(self, start: tuple[int, int], end: tuple[int, int], ship: str) -> bool:
+    def place_ship(self, start: tuple[int, int], end: tuple[int, int],
+                   ship: str) -> bool:
         """
         Place a ship on P1's or P2's Board.
         Return true if ship was placed.
 
-        :param coord: Where to place tip of the ship
+
+        :param start: coordinate of the first piece of the ship
+        :param end: coordinate of the last piece of the ship
         :param ship: the ship that's going to be placed.
-        :param dy: direction
-        :param dx: direction
+
         :return: True if ship was successfully placed False otherwise
         """
-        
+        dx = 0
+        dy = 0
+        diff = 0
+
         if start[0] == end[0]:
-            
             diff = abs(end[1] - start[1])
-
-            dx = 0
-
-            if (end[1] > start[1]):
+            if end[1] > start[1]:
                 dy = 1
+
             else:
                 dy = -1
 
-        elif start[1] == end[1]:
-            
+        if start[1] == end[1]:
             diff = abs(end[0] - start[0])
-
             dy = 0
-
-            if (end[0] > start[0]):
+            if end[0] > start[0]:
                 dx = 1
             else:
                 dx = -1
 
-        else:
+        if (dx == 0 and dy == 0) or (diff != BattlePlan.get_ship_size(ship)):
             return False
 
-        if diff != BattlePlan.get_ship_size(ship):
-            return False
-
-        if _whos_turn == Board.P1:
-            return _P1_Battle_Plan_Board.place_ship(start, ship, dx, dy)
+        if self._whos_turn == Board.P1:
+            return self._P1_Battle_Plan_Board.place_ship(start, ship, dx, dy)
         else:
-            return _P2_Battle_Plan_Board.place_ship(start, ship, dx, dy)
+            return self._P2_Battle_Plan_Board.place_ship(start, ship, dx, dy)
         # Still need to change method place_ship in Board.py so that
         #  it returns a bool
 
-
-    def is_ship_sunk(board: Board, ship: str) -> bool:
+    def is_ship_sunk(self, board: Board, ship: str) -> bool:
         """
         Return whether ship was sunk
 
@@ -90,35 +84,34 @@ class controller:
         :param ship: The given ship
         :return: True or False
         """
-        # Not sure if we need this method - Does the player need to anounce
-        #  if his ship was sunk?
+        # Not sure if we need this method - Does the player need to announce
+        # if his ship was sunk?
         pass
 
-
-    def valid_move(player: str, coord: tuple[int, int]) -> bool:
+    def valid_move(self, player: str, coord: tuple[int, int]) -> bool:
         """
-        Check if coord is a valid move for player: inside the board and player has
-        not hit there before (so that player does not hit twice the same place)
+        Check if coord is a valid move for player: inside the board and player
+        has not hit there before (so that player does not hit twice the same
+        place).
         :param player:
         :param coord: move location
         :return: True if valid, false otherwise
         """
 
-        if not _P1_Battle_Field_Board.valid_coordinate(coord): # coord not inside board
-            return False
+        if not self._P1_Battle_Field_Board.valid_coordinate(coord):
+            return False    # coord not inside board
 
         if player == Board.P1:
-            if _P1_Battle_Field_Board.get() != Board.EMPTY:
+            if self._P1_Battle_Field_Board.get() != Board.EMPTY:
                 return False
             return True
 
         else:
-            if _P2_Battle_Field_Board.get() != Board.EMPTY:
+            if self._P2_Battle_Field_Board.get() != Board.EMPTY:
                 return False
             return True
 
-
-    def move_hit(player: str, coord: tuple[int, int]) -> bool:
+    def move_hit(self, player: str, coord: tuple[int, int]) -> bool:
         """
 
         Coord is a VALID move
@@ -136,39 +129,38 @@ class controller:
         is_hit = False
 
         if player == Board.P1:
-            if _P2_Battle_Plan_Board.get(coord) != Board.EMPTY:
-                _P1_Battle_Field_Board.hit(coord)
+            if self._P2_Battle_Plan_Board.get(coord) != Board.EMPTY:
+                self._P1_Battle_Field_Board.hit(coord)
                 is_hit = True
 
         if player == Board.P2:
-            if _P1_Battle_Plan_Board.get(coord) != Board.EMPTY:
-                _P2_Battle_Field_Board.hit(coord)
+            if self._P1_Battle_Plan_Board.get(coord) != Board.EMPTY:
+                self._P2_Battle_Field_Board.hit(coord)
                 is_hit = True
 
         return is_hit
 
-
-    def is_game_over() -> bool:
+    def is_game_over(self) -> bool:
         """
         Return whether the game is over or not
-        Game is over if all the ships of the opponent were sunk ie, number of hits equals 17
+        Game is over if all the ships of the opponent were sunk ie, number
+        of hits equals 17
 
         :return: True or False
         """
-        return (_P1_Battle_Field_Board.get_nb_of_hits() == 17) \
-                                or (_P2_Battle_Field_Board.get_nb_of_hits() == 17)
+        return (self._P1_Battle_Field_Board.get_nb_of_hits() == 17)\
+               or (self._P2_Battle_Field_Board.get_nb_of_hits() == 17)
 
-
-    def get_winner():
+    def get_winner(self):
         """
         Return the winner of the game
 
         :return: P1 or P2
         """
-        if _P1_Battle_Field_Board.get_nb_of_hits() == 17:
+        if self._P1_Battle_Field_Board.get_nb_of_hits() == 17:
             return Board.P1
 
-        if _P2_Battle_Field_Board.get_nb_of_hits() == 17:
+        if self._P2_Battle_Field_Board.get_nb_of_hits() == 17:
             return Board.P2
 
 
