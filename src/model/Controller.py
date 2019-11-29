@@ -10,12 +10,30 @@ from __future__ import annotations
 
 from model.Board import Board, BattleField, BattlePlan
 
-class controller:
+
+class Controller:
+
+    """
+    Class controller. Plays a battleship game with official battleship rules
+    between 2 human players. Used by GUI.
+
+    === Private Attributes === # Variables to keep track of the game.
+
+    _P1_Battle_Plan_Board: P1's ship locations
+    _P1_Battle_Field_Board: P1's hits and misses
+
+    _P2_Battle_Plan_Board: P2's ship locations
+    _P2_Battle_Field_Board P2's hits and misses
+
+    _whos_turn: who plays next
+
+    """
 
     def __init__(self):
+        """
+        Initializes the controller with the appropriate boards for each player.
 
-        # === Private Attributes ===
-        # Variables to keep track of the game.
+        """
 
         self._P1_Battle_Plan_Board = Board(Board.P1)
         self._P1_Battle_Field_Board = Board(Board.P1)

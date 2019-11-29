@@ -70,9 +70,10 @@ class Board:
         :param coord: coordinates for the board at ROW, COL
         :return: true or false
         """
-        return coord[0] < self._size and coord[1] < self._size and coord[0] > 0 and coord[1] > 0
+        return coord[0] < self._size and coord[1] < self._size and coord[0] > 0\
+               and coord[1] > 0
 
-    def get_board(self) -> List[List[str]]:
+    def get_board(self) -> list[list[str]]:
         return self._board
 
 
@@ -116,14 +117,16 @@ class BattlePlan(Board):
         """
         row, col = coord
 
-        # checks each position up until the ships size and sees if the coordinate is a valid placement
-        while self._size < self.get_ship_size(ship) and self.valid_coordinate(coord) \
-                and self.get(coord) != self.EMPTY:
+        # checks each position up until the ships size and sees if the
+        #  coordinate is a valid placement
+        while self._size < self.get_ship_size(ship) and\
+                self.valid_coordinate(coord) and self.get(coord) != self.EMPTY:
             row += dx
             col += dy
 
         return self.valid_coordinate(coord) and self.get(coord) != self.EMPTY
-        # If the loop ends the you can't place it if the current coordinate is either invalid or not EMPTY
+        # If the loop ends the you can't place it if the current
+        # coordinate is either invalid or not EMPTY
 
     def place_ship(self, coord: tuple[int, int], ship: str, dx: int, dy: int)\
             -> bool:
@@ -167,12 +170,12 @@ class BattleField(Board):
         Board.__init__(self, player)
         self._number_of_hits = 0
 
-        #self.battle_plan = Battle_Plan
+        #  self.battle_plan = Battle_Plan
 
     def hit(self, coord: tuple[int, int]):
         """
         Modifies the board to display whether it was a hit ("x") or miss ("O").
-        Also updates number of hits
+        Also updates number of hits.
 
         :param coord: Takes in an x and y coordinate
         :return: None
@@ -186,6 +189,7 @@ class BattleField(Board):
 
     def get_nb_of_hits(self):
         """
+        Return the number of hits recorded
 
         :return: Number of hits
         """
