@@ -1,4 +1,13 @@
+"""CSC290 Project: Battleship - Dreadnought
+
+
+=== Module Description ===
+This module is the currently unattached AI Player of the game. It is designed to
+provide an outline for a game specific
+implementation of an automated opponent for the human player.
+"""
 from random import random
+
 
 class AIPlayer:
 
@@ -8,13 +17,13 @@ class AIPlayer:
         :param board: Board Object we are playing on
         """
         # list of possible coordinates to attack, initialized to everything
-        self.possMoves = []
+        self.poss_moves = []
         for i in range(10):
             for j in range(10):
-                self.possMoves.append((i, j))
+                self.poss_moves.append((i, j))
 
         # list of plausible hits
-        self.possHits = []
+        self.poss_hits = []
 
         # list of missed coordinates
         self.misses = []
@@ -26,7 +35,7 @@ class AIPlayer:
         self.health = 17
 
         # AIPlayer's ship's coordinates
-        self.shipCoords = []
+        self.ship_coords = []
 
         # AIPlayer's board to play on
         self.board = board
@@ -44,20 +53,20 @@ class AIPlayer:
         :return: Co-ordinates to attack in tuple form or (-1, -1) to indicate
         no valid moves, therefore game over
         """
-        if self.possMoves is []:
+        if self.poss_moves is []:
             return -1, -1
-        if self.possHits is []:
+        if self.poss_hits is []:
             x = -1
             y = -1
-            while (x, y) not in self.possMoves:
+            while (x, y) not in self.poss_moves:
                 x = random.randint(9)
                 y = random.randint(9)
-            self.possMoves.remove((x, y))
+            self.poss_moves.remove((x, y))
             return x, y
         else:
-            m = self.possHits[0]
-            self.possMoves.remove(m)
-            self.possHits.remove(m)
+            m = self.poss_hits[0]
+            self.poss_moves.remove(m)
+            self.poss_hits.remove(m)
             return m
 
     def hurt(self, x, y) ->None:
@@ -67,7 +76,7 @@ class AIPlayer:
         :param y: y-coordinate of own hit ship
         """
         self.health -= 1
-        self.shipCoords.remove((x, y))
+        self.ship_coords.remove((x, y))
         if self.health == 0:
             self.alive = False
 
@@ -79,14 +88,14 @@ class AIPlayer:
         :param y: y-coordinate of other player's hit ship
         """
         self.hits.append((x, y))
-        if (x, y + 1) in self.possMoves:
-            self.possHits.append((x, y + 1))
-        if (x, y - 1) in self.possMoves:
-            self.possHits.append((x, y - 1))
-        if (x + 1, y) in self.possMoves:
-            self.possHits.append((x + 1, y))
-        if (x - 1, y) in self.possMoves:
-            self.possHits.append((x - 1, y))
+        if (x, y + 1) in self.poss_moves:
+            self.poss_hits.append((x, y + 1))
+        if (x, y - 1) in self.poss_moves:
+            self.poss_hits.append((x, y - 1))
+        if (x + 1, y) in self.poss_moves:
+            self.poss_hits.append((x + 1, y))
+        if (x - 1, y) in self.poss_moves:
+            self.poss_hits.append((x - 1, y))
 
     def miss(self, x, y) -> None:
         """
@@ -95,11 +104,3 @@ class AIPlayer:
         :param y: y-coordinate of own miss
         """
         self.misses.append((x, y))
-
-
-
-
-
-
-
-
