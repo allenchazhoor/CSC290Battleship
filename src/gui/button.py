@@ -1,4 +1,4 @@
-import pygame, gui.app
+import pygame, app
 from collections import namedtuple
 
 Style = namedtuple("Style", "bg hbg tcolor")

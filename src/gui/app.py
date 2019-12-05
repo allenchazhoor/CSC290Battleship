@@ -3,6 +3,10 @@ from gui.button import Button, Style
 from gui.guiboard import guiboard
 from enum import Enum
 from model.Controller import controller
+import pathlib
+
+def relative(fn):
+    return pathlib.Path(__file__).parent / 'my_file'
 
 class App:
 
@@ -10,8 +14,8 @@ class App:
 
     fill_color = (255, 255, 255) # RGB white
 
-    background = pygame.image.load('resources/background.jpg')
-    title = pygame.image.load('resources/title.png')
+    background = pygame.image.load(relative('resources/background.jpg'))
+    title = pygame.image.load(relative('resources/title.png'))
 
     arial = pygame.font.SysFont("Arial", 30)
 
