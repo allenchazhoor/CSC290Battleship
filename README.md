@@ -38,10 +38,12 @@
 - The game begins with each player placing their ships on a seperate 10x10 grid. Each player has 5 ships of varying length, so the game tells you how long the ship is before you place it.
 - Placing the ships is pretty simple. Just click on the first and last square that you want the ship to take up, and those squares will turn red, indicating the ship has been placed.
 - Ships can be placed horizontally or vertically, and their positions cannot be changed once the game begins.
+
 **Gameplay**
 - After the ships are placed, Player 1 is presented with a blank grid to shoot at their opponent’s ships. This is done by clicking anywhere on the grid. After the click, the square will turn yellow or black. A yellow square indicates a miss, while black represents a hit. 
 - After Player 1 shoots once, the board turns blank so Player 2 can take their turn. The board reappears when Player 2 presses any key, and lets the player shoot against Player 1.
 - The game ends when all the ships of either player are hit. The first player to sink all of their opponent’s ships is the winner.
+
 ## Documentation
 Class Controller: used to play a battleship game with 2 human players. It executes what the player wants (ie where to place a ship, where to hit) by calling on the methods from the board file.
 
