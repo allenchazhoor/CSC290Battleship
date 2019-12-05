@@ -32,7 +32,7 @@
          cd src
          python3 main.py
          ```
-
+         
 ### Individual Contributions
 
 #### George Lewis
