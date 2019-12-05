@@ -2,17 +2,19 @@ import pygame, crayons
 from gui.button import Button, Style
 from gui.guiboard import guiboard
 from enum import Enum
-from model.Controller import controller
+from model.controller import Controller
 import pathlib
 
 def relative(fn):
-    return pathlib.Path(__file__).parent / 'my_file'
+    return str(pathlib.Path(__file__).parent.parent / fn)
 
 class App:
 
     instance = None
 
     fill_color = (255, 255, 255) # RGB white
+
+    print(relative('resources/background.jpg'))
 
     background = pygame.image.load(relative('resources/background.jpg'))
     title = pygame.image.load(relative('resources/title.png'))
@@ -46,7 +48,7 @@ class App:
         
         self._running = False
 
-        self.game = controller()
+        self.game = Controller()
         
         self.size = self.width, self.height = (1000, 1000)
         

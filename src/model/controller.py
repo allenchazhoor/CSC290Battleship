@@ -8,7 +8,7 @@ supporting methods.
 """
 from __future__ import annotations
 
-from model.Board import Board, BattleField, BattlePlan
+from model.board import Board, BattleField, BattlePlan
 
 
 class Controller:
