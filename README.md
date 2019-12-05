@@ -30,6 +30,7 @@
          cd src
          python3 main.py
          ```
+
 ## Documentation
 AIPlayer: The class is unattached to the remainder of the code and acts primarily as an outline for future extension.
 def ___init___(self, board): The initializer takes in a Board object as a parameter and initializes the requisite variables. 
@@ -37,5 +38,11 @@ def move(self)->(int, int): The move method is the AIPlayer’s attack method. I
 def hurt(self, x, y) ->None: The hurt method is to be used when the AIPlayer is damaged. Its parameters are the coordinates of the ship hit. The player will remove the coordinate from shipCoords and subtract 1 from health. If health hits 0, alive is set to false. 
 def hit(self, x, y) -> None: The method used when AIPlayer hits the opponent. This method will cycle through the surrounding coordinates given by the parameters and add them to possMoves if they are valid coordinates to attack. The provided coordinates are also added to hits.
  def miss(self, x, y) -> None: This method is called if the AIPlayer’s attack is a miss. It simply appends the provided coordinates to misses. 
+
 ## INDIVIDUAL CONTRIBUTIONS
-Allen: I chose the name for the game. I set up the Github repository on my account, and created the rebrand.ly shortcut to assist with easy installation. I developed and coded all of the AIPlayer class and its methods. I helped discover bugs in the overall running of the game model. I assisted in the creation and and brainstorming of the project plan, design review presentation, final presentation and now the final project repository. I created and organized the outline for the README. I helped write the instructions on how to download and install the game in the README as well as chose the licence for the repository. I added the screenshots to the repository. I outlined in detail the nature of AIPlayer class here in the README and offered it as an example for extension.
+
+### George
+> I contributed most of what can be found in in the `gui` folder under `src` including the `App` class and `Button` class. Additionally, I am solely responsible for the system used to launch the game, namely: `launch.bat`, `launch.sh`, and `setup.py`. In terms of this document I wrote (with help from Allen) the sections **Introduction** and **Installing and Running**.
+
+### Allen
+> I chose the name for the game. I set up the Github repository on my account, and created the rebrand.ly shortcut to assist with easy installation. I developed and coded all of the AIPlayer class and its methods. I helped discover bugs in the overall running of the game model. I assisted in the creation and and brainstorming of the project plan, design review presentation, final presentation and now the final project repository. I created and organized the outline for the README. I helped write the instructions on how to download and install the game in the README as well as chose the licence for the repository. I added the screenshots to the repository. I outlined in detail the nature of AIPlayer class here in the README and offered it as an example for extension.
