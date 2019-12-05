@@ -1,7 +1,5 @@
 # DreadNought - Readme
 
-[toc]
-
 ## Screenshots
 
 | ![](dread7.jpg) | ![](dread2.png) |
