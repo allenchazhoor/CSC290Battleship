@@ -30,8 +30,23 @@
          cd src
          python3 main.py
          ```
+<<<<<<< HEAD
 
 ## Documentation
+Class Controller: used to play a battleship game with 2 human players. It executes what the player wants (ie where to place a ship, where to hit) by calling on the methods from the board file.
+
+def place_ship(self, start: tuple[int, int], end: tuple[int,int],ship: str) -> bool:
+
+First, this method checks if it can place the desired ship at the given position. Then, if possible, it places the ship on the board by calling the required board method and returns true. Otherwise, the ship is not placed and the method returns false.
+
+def move_hit(self, player: str, coord: tuple[int, int]) -> bool:
+
+The method records a move by placing on the player’s board whether his shot was a hit or a miss. It returns true if a ship was hit and false if not.
+
+def is_game_over(self) -> bool:
+
+This method determines if the game is over or not. Since there are 5 ships with a total of 17 spaces to hit, the game is over when one of the players has a total number of hits of 17.
+
 
 ## EXTENSION EXAMPLE
 The AIPlayer class can be amended and edited to be attached to a future implementation and extension of the game. The class is currently fairly abstract in its design and has documentation explaining its functionality. For instance, AI ship placement is currently missing from the class and is required for a fully autonomous opponent.
@@ -49,3 +64,8 @@ The AIPlayer class can be amended and edited to be attached to a future implemen
 
 ### Bradley
 > My main contributions to the game were in the graphics of the title screen. I used images that were copyright-free, for the background of the title screen and the game buttons. I created the logo of the game The code I wrote basically just imports the image files and displays them on the game screen. For the README, I wrote the section on how to play the game, with step-by-step instructions.
+
+### Thomas
+> I was responsible for the backend of the project. I wrote most of the code in the controller file and some methods in the board file. I also added documentation for all the methods I wrote. I also contributed towards both presentation slides production and the project plan. 
+For the README file, I contributed towards describing what the main methods in the controller file work and how to use them.
+
