@@ -45,7 +45,7 @@
 - The game ends when all the ships of either player are hit. The first player to sink all of their opponent’s ships is the winner.
 
 ## Documentation
-Class Controller: used to play a battleship game with 2 human players. It executes what the player wants (ie where to place a ship, where to hit) by calling on the methods from the board file.
+**Class Controller**: used to play a battleship game with 2 human players. It executes what the player wants (ie where to place a ship, where to hit) by calling on the methods from the board file.
 
 def place_ship(self, start: tuple[int, int], end: tuple[int,int],ship: str) -> bool:
 
@@ -59,7 +59,7 @@ def is_game_over(self) -> bool:
 
 This method determines if the game is over or not. Since there are 5 ships with a total of 17 spaces to hit, the game is over when one of the players has a total number of hits of 17.
 
-**aiplayer:** The class is unattached to the remainder of the code and acts primarily as an outline for future extension.
+**Class aiplayer:** The class is unattached to the remainder of the code and acts primarily as an outline for future extension.
 
 >*def init(self, board):* The initializer takes in a Board object as a parameter and initializes the requisite variables. 
 
