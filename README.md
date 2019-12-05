@@ -59,7 +59,7 @@ def is_game_over(self) -> bool:
 
 This method determines if the game is over or not. Since there are 5 ships with a total of 17 spaces to hit, the game is over when one of the players has a total number of hits of 17.
 
-**AIPlayer:** The class is unattached to the remainder of the code and acts primarily as an outline for future extension.
+**aiplayer:** The class is unattached to the remainder of the code and acts primarily as an outline for future extension.
 
 >*def init(self, board):* The initializer takes in a Board object as a parameter and initializes the requisite variables. 
 
