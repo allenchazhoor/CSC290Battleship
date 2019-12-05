@@ -91,20 +91,6 @@ class Controller:
             return self._P1_Battle_Plan_Board.place_ship(start, ship, dx, dy)
         else:
             return self._P2_Battle_Plan_Board.place_ship(start, ship, dx, dy)
-        # Still need to change method place_ship in Board.py so that
-        #  it returns a bool
-
-    def is_ship_sunk(self, board: Board, ship: str) -> bool:
-        """
-        Return whether ship was sunk
-
-        :param board: The board on which the ship is located: either
-        :param ship: The given ship
-        :return: True or False
-        """
-        # Not sure if we need this method - Does the player need to announce
-        # if his ship was sunk?
-        pass
 
     def valid_move(self, player: str, coord: tuple[int, int]) -> bool:
         """
@@ -131,7 +117,6 @@ class Controller:
 
     def move_hit(self, player: str, coord: tuple[int, int]) -> bool:
         """
-
         Coord is a VALID move
 
         Make a move for player
@@ -166,8 +151,8 @@ class Controller:
 
         :return: True or False
         """
-        return (self._P1_Battle_Field_Board.get_nb_of_hits() == 17)\
-               or (self._P2_Battle_Field_Board.get_nb_of_hits() == 17)
+        return (self._P1_Battle_Field_Board.get_nb_of_hits() == 17) or\
+               (self._P2_Battle_Field_Board.get_nb_of_hits() == 17)
 
     def get_winner(self):
         """

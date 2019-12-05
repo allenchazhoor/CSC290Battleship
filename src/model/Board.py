@@ -137,13 +137,6 @@ class BattlePlan(Board):
 
         row, col = coord
         size = 0
-
-        # while self.can_place(coord, ship, dx, dy) and size < self.get_ship_size(ship):
-        #     self.get_board()[row][col] = ship
-        #     row += dx
-        #     col += dy
-        #     size +=1
-
         while size < self.get_ship_size(ship):
             if not self.can_place(coord, ship, dx, dy):
                 return False
