@@ -30,6 +30,7 @@
          cd src
          python3 main.py
          ```
+<<<<<<< HEAD
 
 ## Documentation
 AIPlayer: The class is unattached to the remainder of the code and acts primarily as an outline for future extension.
@@ -46,3 +47,9 @@ def hit(self, x, y) -> None: The method used when AIPlayer hits the opponent. Th
 
 ### Allen
 > I chose the name for the game. I set up the Github repository on my account, and created the rebrand.ly shortcut to assist with easy installation. I developed and coded all of the AIPlayer class and its methods. I helped discover bugs in the overall running of the game model. I assisted in the creation and and brainstorming of the project plan, design review presentation, final presentation and now the final project repository. I created and organized the outline for the README. I helped write the instructions on how to download and install the game in the README as well as chose the licence for the repository. I added the screenshots to the repository. I outlined in detail the nature of AIPlayer class here in the README and offered it as an example for extension.
+
+### Chris
+> Worked with Thomas to develop the game mechanics and game model. Designed methods inside of the Board class which included making the board, placing the ships, firing, check if valid coordinates, and checking winning condition. I helped George with connecting the GUI elements with the game model and discussed various display aspects for the game. I also assisted the group in the creation and planning of the project plan, design review presentation, and final presentation. 
+
+### Bradley
+> My main contributions to the game were in the graphics of the title screen. I used images that were copyright-free, for the background of the title screen and the game buttons. I created the logo of the game The code I wrote basically just imports the image files and displays them on the game screen. For the README, I wrote the section on how to play the game, with step-by-step instructions.
