@@ -1,9 +1,12 @@
-import pygame, gui.app, crayons
+import pygame
+import gui.app
+import crayons
 from enum import Enum
 
-class guiboard:
 
-    class player(Enum):
+class GuiBoard:
+
+    class Player(Enum):
         p1 = 0,
         p2 = 1
 
@@ -24,7 +27,7 @@ class guiboard:
 
     placing_ships = True
 
-    active_player = player.p1
+    active_player = Player.p1
 
     ships_list = 'SDBCP'
 
@@ -33,89 +36,112 @@ class guiboard:
     ships = []
 
     def __init__(self):
-        if guiboard.instance:
+        if GuiBoard.instance:
             raise Exception
 
-        guiboard.letters = [(let, gui.app.App.board_font.render(let, True, (0,0,0))) for let in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+        GuiBoard.letters = [(let,
+                             gui.app.App.board_font.render(let,
+                                                           True,
+                                                           (0, 0, 0)))
+                            for let in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
 
-        guiboard.nums = [(n, gui.app.App.board_font.render(n, True, (0,0,0))) for n in list("123456789") + ['10', '11']]
+        GuiBoard.nums = [(n, gui.app.App.board_font.render(n, True, (0, 0, 0)))
+                         for n in list("123456789") + ['10', '11']]
 
     def init():
-        guiboard.instance = guiboard()
+        GuiBoard.instance = GuiBoard()
 
     def square_coords(row, col):
 
-        drow = guiboard.height / guiboard.rows
-        dcol = guiboard.height / guiboard.cols
+        drow = GuiBoard.height / GuiBoard.rows
+        dcol = GuiBoard.height / GuiBoard.cols
 
-        return (guiboard.x + row * dcol + guiboard.line_thickness, guiboard.y + col * drow + guiboard.line_thickness, dcol - guiboard.line_thickness, drow - guiboard.line_thickness)
+        return (GuiBoard.x + row * dcol + GuiBoard.line_thickness, GuiBoard.y +
+                col * drow + GuiBoard.line_thickness, dcol -
+                GuiBoard.line_thickness, drow - GuiBoard.line_thickness)
 
     def render(self):
-        
-        #pygame.draw.rect(gui.app.App.instance.screen, (0,0,0), (guiboard.x, guiboard.y, guiboard.width, guiboard.height))
 
-        drow = guiboard.height / guiboard.rows
-        dcol = guiboard.height / guiboard.cols
+        drow = GuiBoard.height / GuiBoard.rows
+        dcol = GuiBoard.height / GuiBoard.cols
 
-        for r in range(guiboard.rows + 1):
+        for r in range(GuiBoard.rows + 1):
 
-            if r == guiboard.rows:
-                pygame.draw.rect(gui.app.App.instance.screen, (0,0,0),
-                (guiboard.x,
-                guiboard.y + r * drow, guiboard.width + guiboard.line_thickness,
-                guiboard.line_thickness))
+            if r == GuiBoard.rows:
+                pygame.draw.rect(gui.app.App.instance.screen,
+                                 (0, 0, 0), (GuiBoard.x,
+                                             GuiBoard.y + r * drow,
+                                             GuiBoard.width +
+                                             GuiBoard.line_thickness,
+                                             GuiBoard.line_thickness))
 
             else:
-                pygame.draw.rect(gui.app.App.instance.screen, (0,0,0),
-                (guiboard.x,
-                guiboard.y + r * drow, guiboard.width,
-                guiboard.line_thickness))
+                pygame.draw.rect(gui.app.App.instance.screen,
+                                 (0, 0, 0),
+                                 (GuiBoard.x, GuiBoard.y + r * drow,
+                                  GuiBoard.width, GuiBoard.line_thickness))
 
-                wid = gui.app.App.board_font.size(guiboard.nums[r][0])[0]
+                wid = gui.app.App.board_font.size(GuiBoard.nums[r][0])[0]
 
-                gui.app.App.instance.screen.blit(guiboard.nums[r][1], (guiboard.x - (wid/2) - 50, guiboard.y + r * drow + (dcol / 4)))
+                gui.app.App.instance.screen.blit(GuiBoard.nums[r][1],
+                                                 (GuiBoard.x - (wid/2)
+                                                  - 50, GuiBoard.y +
+                                                  r * drow + (dcol / 4)))
 
-        for c in range(guiboard.cols + 1):
+        for c in range(GuiBoard.cols + 1):
 
-            if c != guiboard.cols:
+            if c != GuiBoard.cols:
 
-                wid = gui.app.App.board_font.size(guiboard.letters[c][0])[0]
+                wid = gui.app.App.board_font.size(GuiBoard.letters[c][0])[0]
 
-                gui.app.App.instance.screen.blit(guiboard.letters[c][1], (guiboard.x + c * dcol + ((dcol+guiboard.line_thickness) / 2) - (wid / 2), guiboard.y - 50))
-            
-            pygame.draw.rect(gui.app.App.instance.screen, (0,0,0), (guiboard.x + c * dcol, guiboard.y, guiboard.line_thickness, guiboard.height))
+                gui.app.App.instance.screen.blit(GuiBoard.letters[c][1],
+                                                 (GuiBoard.x + c * dcol +
+                                                  ((dcol +
+                                                    GuiBoard.line_thickness)
+                                                   / 2) -
+                                                  (wid / 2), GuiBoard.y - 50))
+
+            pygame.draw.rect(gui.app.App.instance.screen,
+                             (0, 0, 0),
+                             (GuiBoard.x + c * dcol,
+                              GuiBoard.y,
+                              GuiBoard.line_thickness,
+                              GuiBoard.height))
 
         px, py = self.get_coords(pygame.mouse.get_pos())
 
         #print(f"({px}, {py})")
 
         if px is not None and py is not None:
-            pygame.draw.rect(gui.app.App.instance.screen, (3, 148, 252), guiboard.square_coords(px, py))
+            pygame.draw.rect(gui.app.App.instance.screen, (3, 148, 252),
+                             GuiBoard.square_coords(px, py))
 
-        for sq in guiboard.ships:
-            pygame.draw.rect(gui.app.App.instance.screen, (255, 0, 0), guiboard.square_coords(sq[0], sq[1]))
+        for sq in GuiBoard.ships:
+            pygame.draw.rect(gui.app.App.instance.screen, (255, 0, 0),
+                             GuiBoard.square_coords(sq[0], sq[1]))
 
     def get_coords(self, mouse):
-        
+
         if not self.check_bounds(*mouse):
             return None, None
 
-        drow = guiboard.height / guiboard.rows
-        dcol = guiboard.height / guiboard.cols
+        drow = GuiBoard.height / GuiBoard.rows
+        dcol = GuiBoard.height / GuiBoard.cols
 
-        x= (mouse[0] - guiboard.x)//(drow)# + guiboard.line_thickness)
-        y = (mouse[1] - guiboard.y)//(dcol)# + guiboard.line_thickness)
+        x= (mouse[0] - GuiBoard.x)//drow  # + GuiBoard.line_thickness)
+        y = (mouse[1] - GuiBoard.y)//dcol  # + GuiBoard.line_thickness)
 
-        if (x > guiboard.cols):
-            x = guiboard.cols
+        if x > GuiBoard.cols:
+            x = GuiBoard.cols
 
-        if (y > guiboard.rows):
-            y = guiboard.rows
+        if y > GuiBoard.rows:
+            y = GuiBoard.rows
 
         return x, y
 
     def check_bounds(self, x, y):
-        return self.x < x < self.x + self.width and self.y < y < self.y + self.height
+        return self.x < x < self.x + self.width and self.y < y < self.y + \
+               self.height
 
     def handle_click(self, mouse):
 
@@ -128,21 +154,24 @@ class guiboard:
 
         if x is None and y is None:
             return
-        #    guiboard.clicked.append((x, y))
-        
-        if guiboard.placing_ships:
-            if len(guiboard.ships) >= 2:
-                guiboard.ships = [(x,y)]
-            
+        #    GuiBoard.clicked.append((x, y))
+
+        if GuiBoard.placing_ships:
+            if len(GuiBoard.ships) >= 2:
+                GuiBoard.ships = [(x,y)]
+
             else:
-                guiboard.ships.append((x,y))
+                GuiBoard.ships.append((x,y))
 
-            if len(guiboard.ships) == 2:
+            if len(GuiBoard.ships) == 2:
 
-                if gui.app.App.instance.game.place_ship(guiboard.ships[0], guiboard.ships[1], guiboard.ships[guiboard.ships_index]):
-                    guiboard.ships_index += 1
+                if gui.app.App.instance.game.place_ship(GuiBoard.ships[0],
+                                                        GuiBoard.ships[1],
+                                                        GuiBoard.ships
+                                                        [GuiBoard.ships_index]):
+                    GuiBoard.ships_index += 1
 
-                    print(crayons.red(f'Placed ship at {guiboard.ships}'))
+                    print(crayons.red(f'Placed ship at {GuiBoard.ships}'))
 
-                    if guiboard.ships_index == 5:
-                        guiboard.placing_ships = False
+                    if GuiBoard.ships_index == 5:
+                        GuiBoard.placing_ships = False

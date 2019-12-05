@@ -1,18 +1,21 @@
-import pygame, crayons
+import pygame
+import crayons
 from gui.button import Button, Style
-from gui.guiboard import guiboard
+from gui.guiboard import GuiBoard
 from enum import Enum
 from model.controller import Controller
 import pathlib
 
+
 def relative(fn):
     return str(pathlib.Path(__file__).parent.parent / fn)
+
 
 class App:
 
     instance = None
 
-    fill_color = (255, 255, 255) # RGB white
+    fill_color = (255, 255, 255)  # RGB white
 
     print(relative('resources/background.jpg'))
 
@@ -31,7 +34,7 @@ class App:
 
     pause = False
 
-    class mode(Enum):
+    class Mode(Enum):
         title_screen = 0
         game = 1
         settings = 2
@@ -42,33 +45,44 @@ class App:
         if App.instance:
             raise Exception
 
-        guiboard.init() # Initialize guiboard singleton
+        GuiBoard.init()  # Initialize GuiBoard singleton
 
         App.instance = self
-        
+
         self._running = False
 
         self.game = Controller()
-        
+
         self.size = self.width, self.height = (1000, 1000)
-        
-        self.mode = App.mode.title_screen
+
+        self.mode = App.Mode.title_screen
 
         self.button = Button(100, 100, 100, 100,
-            "abc", App.button_font, lambda: print(crayons.cyan('clicked!')), Style(bg = (255,255,255), hbg = (0,0,0), tcolor = (255,0,0)))
+                             "abc", App.button_font, lambda:
+                             print(crayons.cyan('clicked!')),
+                             Style(bg=(255, 255, 255),
+                                   hbg=(0, 0, 0), tcolor=(255, 0, 0)))
 
         self.button.disabled = True
 
         self.exit = Button(0, 0, 200, 70,
-            "Exit", App.button_font, lambda: App.instance.stop(), Style(bg = (233, 30, 99), hbg = (255, 96, 144), tcolor = (0,0,0)))
+                           "Exit", App.button_font, lambda:
+                           App.instance.stop(), Style(bg=(233, 30, 99),
+                                                      hbg=(255, 96, 144),
+                                                      tcolor=(0, 0, 0)))
 
         self.exit.disabled = True
 
         s = Style((10, 123, 209), (10, 123, 209), (255,255,255))
 
-        self.play_button = Button(300, 450, 400, 125, "Play", App.title_screen_button_font, lambda: App.instance.set_mode(App.mode.game), style = s) 
-        
-        self.info_button = Button(300, 600, 400, 125, "Info", App.title_screen_button_font, lambda: App.instance.set_mode(App.mode.info), style = s)
+        self.play_button = Button(300, 450, 400, 125,
+                                  "Play", App.title_screen_button_font, lambda:
+                                  App.instance.set_mode(App.Mode.game), style=s)
+
+        self.info_button = Button(300, 600, 400, 125, "Info",
+                                  App.title_screen_button_font, lambda:
+                                  App.instance.set_mode(App.Mode.info),
+                                  style=s)
 
         print(crayons.green('Instantiated App'))
 
@@ -97,16 +111,16 @@ class App:
             self._running = False
 
     def click(self, event):
-        
+
         pos = pygame.mouse.get_pos()
 
-        if self.mode == App.mode.game:
+        if self.mode == App.Mode.game:
             self.button.handle_click(pos)
-            guiboard.instance.handle_click(pos)
-        elif self.mode == App.mode.title_screen:
+            GuiBoard.instance.handle_click(pos)
+        elif self.mode == App.Mode.title_screen:
             self.play_button.handle_click(pos)
             self.info_button.handle_click(pos)
-        
+
         self.exit.handle_click(pos)
 
     def handle_events(self):
@@ -150,23 +164,26 @@ class App:
         self.screen.fill(self.fill_color)  # Clear screen
 
         # Begin drawing code
-        if self.mode == App.mode.title_screen:
-            # Render Title Screenpasspasspass
-            
+        if self.mode == App.Mode.title_screen:
+            # Render Title Screen
+
             self.screen.blit(App.background, (0, 0))
             self.screen.blit(App.title, (235, 150))
             self.play_button.render()
             self.info_button.render()
-        elif self.mode == App.mode.game:
+        elif self.mode == App.Mode.game:
             # Render game
 
-            guiboard.instance.render()
+            GuiBoard.instance.render()
 
             self.button.render()
 
-            self.screen.blit(App.board_font.render(App.message, True, (0,0,0)), ((self.size[0] - App.board_font.size(App.message)[0])/2, 30))
+            self.screen.blit(App.board_font.render(App.message,
+                                                   True, (0, 0, 0)),
+                             ((self.size[0]
+                               - App.board_font.size(App.message)[0])/2, 30))
 
-        elif self.mode == App.mode.settings:
+        elif self.mode == App.Mode.settings:
             pass
 
         self.exit.render()
@@ -188,5 +205,5 @@ class App:
             self.logic()
 
             self.render()
-        
+
         self.cleanup()
