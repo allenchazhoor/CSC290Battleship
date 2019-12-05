@@ -32,3 +32,9 @@
          cd src
          python3 main.py
          ```
+
+### Individual Contributions
+
+#### George Lewis
+
+> I contributed most of what can be found in in the `gui` folder under `src` including the `App` class and `Button` class. Additionally, I am solely responsible for the system used to launch the game, namely: `launch.bat`, `launch.sh`, and `setup.py`. In terms of this document I wrote (with help from Allen) the sections **Introduction** and **Installing and Running**.
