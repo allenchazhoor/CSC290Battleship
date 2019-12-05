@@ -51,7 +51,8 @@ class Board:
         # creates the 11 by 11 board with coordinates on the sides displayed
         for i, k in enumerate(range(0, 10)):
             self._board.append([str(k)] + [" "]*10)
-        self._board.insert(0, [" "] + ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"])
+        self._board.insert(0, [" "] + ["A", "B", "C", "D", "E", "F", "G", "H",
+                                       "I", "J"])
 
         self._size = len(self._board)
 
@@ -70,8 +71,8 @@ class Board:
         :param coord: coordinates for the board at ROW, COL
         :return: true or false
         """
-        return coord[0] < self._size and coord[1] < self._size and coord[0] > 0\
-               and coord[1] > 0
+        return coord[0] < self._size \
+               and coord[1] < self._size and coord[0] > 0 and coord[1] > 0
 
     def get_board(self) -> list[list[str]]:
         return self._board
@@ -110,7 +111,8 @@ class BattlePlan(Board):
         else:
             return 0
 
-    def can_place(self, coord: tuple[int, int], ship: str, dx: int, dy: int) -> bool:
+    def can_place(self, coord: tuple[int, int], ship: str, dx: int, dy: int)\
+            -> bool:
         """
         Sees if you can place the ship in that coordinate in a specific direction
 
