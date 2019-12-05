@@ -30,7 +30,6 @@
          cd src
          python3 main.py
          ```
-<<<<<<< HEAD
 
 ## Documentation
 
