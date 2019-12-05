@@ -1,4 +1,5 @@
-import pygame, crayons
+import pygame
+import crayons
 
 if __name__ == '__main__':
 
