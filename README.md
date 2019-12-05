@@ -45,7 +45,7 @@
 - The game ends when all the ships of either player are hit. The first player to sink all of their opponent’s ships is the winner.
 
 ## Documentation
-Class Controller: used to play a battleship game with 2 human players. It executes what the player wants (ie where to place a ship, where to hit) by calling on the methods from the board file.
+**Class Controller**: used to play a battleship game with 2 human players. It executes what the player wants (ie where to place a ship, where to hit) by calling on the methods from the board file.
 
 def place_ship(self, start: tuple[int, int], end: tuple[int,int],ship: str) -> bool:
 
@@ -59,7 +59,7 @@ def is_game_over(self) -> bool:
 
 This method determines if the game is over or not. Since there are 5 ships with a total of 17 spaces to hit, the game is over when one of the players has a total number of hits of 17.
 
-**AIPlayer:** The class is unattached to the remainder of the code and acts primarily as an outline for future extension.
+**Class aiplayer:** The class is unattached to the remainder of the code and acts primarily as an outline for future extension.
 
 >*def init(self, board):* The initializer takes in a Board object as a parameter and initializes the requisite variables. 
 
@@ -83,7 +83,7 @@ The AIPlayer class can be amended and edited to be attached to a future implemen
 > I contributed most of what can be found in in the `gui` folder under `src` including the `App` class and `Button` class. Additionally, I am solely responsible for the system used to launch the game, namely: `launch.bat`, `launch.sh`, and `setup.py`. In terms of this document I wrote (with help from Allen) the sections **Introduction** and **Installing and Running**.
 
 ### Allen
-> I chose the name for the game. I set up the Github repository on my account, and created the rebrand.ly shortcut to assist with easy installation. I developed and coded all of the AIPlayer class and its methods. I helped discover bugs in the overall running of the game model. I assisted in the creation and and brainstorming of the project plan, design review presentation, final presentation and now the final project repository. I created and organized the outline for the README. I helped write the instructions on how to download and install the game in the README as well as chose the licence for the repository. I added the screenshots to the repository. I outlined in detail the nature of AIPlayer class here in the README and offered it as an example for extension.
+> I set up the Github repository on my account. I developed and coded all of the AIPlayer class and its methods. I assisted in the creation and and brainstorming of the project plan, design review presentation, final presentation and now the final project repository. I created and organized the outline for the README. I helped write the instructions (with George) on how to download and install the game in the README as well as chose the licence for the repository. I added the screenshots to the repository. I outlined in detail the nature of AIPlayer class here in the README and offered it as an example for extension.
 
 ### Chris
 > Worked with Thomas to develop the game mechanics and game model. Designed methods inside of the Board class which included making the board, placing the ships, firing, check if valid coordinates, and checking winning condition. I helped George with connecting the GUI elements with the game model and discussed various display aspects for the game. I also assisted the group in the creation and planning of the project plan, design review presentation, and final presentation. 
