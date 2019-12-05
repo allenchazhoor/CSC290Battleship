@@ -30,7 +30,6 @@
          cd src
          python3 main.py
          ```
-<<<<<<< HEAD
 
 ## Documentation
 Class Controller: used to play a battleship game with 2 human players. It executes what the player wants (ie where to place a ship, where to hit) by calling on the methods from the board file.
@@ -49,15 +48,15 @@ This method determines if the game is over or not. Since there are 5 ships with 
 
 **AIPlayer:** The class is unattached to the remainder of the code and acts primarily as an outline for future extension.
 
-*def ___init___(self, board):* The initializer takes in a Board object as a parameter and initializes the requisite variables. 
+   *def init(self, board):* The initializer takes in a Board object as a parameter and initializes the requisite variables. 
 
-*def move(self)->(int, int):* The move method is the AIPlayer’s attack method. If the AIPlayer has no known plausible hits against the opponent, it will randomly generate a spot to attack. If the AIPlayer’s possMoves variable is not empty, it will attack the first plausible move in its list. The coordinates to be attacked are returned in a tuple of integers. 
+   *def move(self)->(int, int):* The move method is the AIPlayer’s attack method. If the AIPlayer has no known plausible hits against the opponent, it will randomly generate a spot to attack. If the AIPlayer’s possMoves variable is not empty, it will attack the first plausible move in its list. The coordinates to be attacked are returned in a tuple of integers. 
 
-*def hurt(self, x, y) ->None:* The hurt method is to be used when the AIPlayer is damaged. Its parameters are the coordinates of the ship hit. The player will remove the coordinate from shipCoords and subtract 1 from health. If health hits 0, alive is set to false. 
+   *def hurt(self, x, y) ->None:* The hurt method is to be used when the AIPlayer is damaged. Its parameters are the coordinates of the ship hit. The player will remove the coordinate from shipCoords and subtract 1 from health. If health hits 0, alive is set to false. 
 
-*def hit(self, x, y) -> None:* The method used when AIPlayer hits the opponent. This method will cycle through the surrounding coordinates given by the parameters and add them to possMoves if they are valid coordinates to attack. The provided coordinates are also added to hits.
+   *def hit(self, x, y) -> None:* The method used when AIPlayer hits the opponent. This method will cycle through the surrounding coordinates given by the parameters and add them to possMoves if they are valid coordinates to attack. The provided coordinates are also added to hits.
 
-*def miss(self, x, y) -> None:* This method is called if the AIPlayer’s attack is a miss. It simply appends the provided coordinates to misses. 
+   *def miss(self, x, y) -> None:* This method is called if the AIPlayer’s attack is a miss. It simply appends the provided coordinates to misses. 
 
 
 
