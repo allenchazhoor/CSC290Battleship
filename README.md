@@ -34,6 +34,9 @@
 
 ## Documentation
 
+## EXTENSION EXAMPLE
+The AIPlayer class can be amended and edited to be attached to a future implementation and extension of the game. The class is currently fairly abstract in its design and has documentation explaining its functionality. For instance, AI ship placement is currently missing from the class and is required for a fully autonomous opponent.
+
 ## INDIVIDUAL CONTRIBUTIONS
 
 ### George
